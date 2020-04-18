@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Join Qudos's affiliate program to build your business and earn rewards for new rider referrals.">
+    <meta name="keywords" content="">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="core__assets/css/vendors/bootstrap/bootstrap.min.css">
+    <!-- Animate on Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="core__assets/css/vendors/owl/owl.carousel.min.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans:400,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="core__assets/css/vendors/fontello/fontello.css">
+    <link rel="stylesheet" href="core__assets/fonts/fontawesome/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="core__assets/img/logins/favIcon.png">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="core__assets/css/vendors/legacy/styles.min.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/legacy/main.css">
+    <title>Qudos | Affiliates Sign Up</title>
+    <style>
+        #fourth-step.submit.disabled {
+            opacity: 0.6;
+            background: grey;
+            cursor: not-allowed;
+        }
+        .countrycodeOverlay {
+            width: 14%;
+            height: 76%;
+            position: absolute;
+            z-index: 9999;
+            top: 19%;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/utils.js"></script>
+
+    
+     <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Qudos",
+        "operatingSystem": "iOS",
+        "applicationCategory": "Travel and Local",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.0",
+            "ratingCount": "14"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    <script type="text/javascript">
+        var countryCode = '+1-';
+
+        function changeSignupTitle(title) {
+            $("#signup-title").text(title);
+        }
+
+        function trimZip() {
+            var zipMaxLength = (countryToSet == "PH") ? 4 : 5;
+
+            var desired = $('#zip').val().replace(/[^\w\s]/gi, '').replace(/\D/g, '');
+            $('#zip').val(desired.slice(0, zipMaxLength));
+        }
+
+        function addRemoveClass(selector, classname, addClass) {
+            addClass ? $(selector).addClass(classname) : $(selector).removeClass(classname);
+            if (selector == "#signup-4") {
+                document.querySelector(selector).classList.contains('hidden') == true ? changeSignupTitle('Affiliate Sign Up') : changeSignupTitle('OTP Sent');
+            }
+        }
+
+        function getStates(c_id) {
+            $.post(VENDOR_API_URL + '/states', {
+                country_id: c_id
+            }, function(data, status) {
+                if (typeof data == 'string')
+                    data = JSON.parse(data)
+                var states = data.cities;
+                var options = "";
+                states.forEach(function(state) {
+                    options += "<option value='" + state.state_id + "'>" + state.state_name + "</option>"
+                });
+                $("#select-state").html(options);
+            });
+        }
+
+        function getSubTypes() {
+            $.ajax({
+                method: 'GET',
+                url: VENDOR_API_URL + '/subtypes',
+                data: {},
+                success: function(data, status) {
+                    if (typeof data == 'string') {
+                        data = JSON.parse(data)
+                    }
+                    var subtypes = data.subtype;
+                    var options = "";
+                    subtypes.forEach(function(subtype) {
+                        options += "<option value='" + subtype.subtype_id + "'" + (subtype.subtype_id == 35 ? ' selected' : '') + ">" + subtype.subtype_name + "</option>"
+                    });
+                    $("#select-subtype").html(options);
+                }
+            });
+        }
+        var countries;
+
+        function getCountries() {
+            $.ajax({
+                url: CORPORATE_PORTAL_URL + '/countryList',
+                success: function(data, status) {
+
+                    if (typeof data == 'string')
+                        data = JSON.parse(data)
+
+                    countries = data.countries;
+                    console.log(countries);
+                    var options = "";
+                    var disabled;
+                    countries.forEach(function(country) {
+                        options += "<option value='" + country.country_id + "' data-code='" + country.country_code + "'  >" + country.country_name + "</option>"
+                    });
+                    $("#country").html(options);
+                },
+                error: function(data, status) {
+                    console.log('Error occured while retriving states');
+                }
+            });
+        }
+        var countryToSet = 'US';
+        $(function() {
+            getStates(1);
+            getCountries();
+            getSubTypes();
+            $("#country").on('change', function() {
+                console.log($(this).val(), ' selected');
+
+                getStates($(this).val());
+                if ($(this).val() == '2') {
+                    countryToSet = 'PH';
+                    $('#stateLabel').text('Select State/City');
+                } else if ($(this).val() == '1') {
+                    countryToSet = 'US';
+                    $('#stateLabel').text('Select State');
+                } else {
+                    countryToSet = $('#country option:selected').data('code');
+                    $('#stateLabel').text('Select State');
+                }
+                $("#mobile").intlTelInput("setCountry", countryToSet);
+            });
+            $("#first-step").click(function() {
+                if ($("#select-state option:selected").text()) {
+                    $("#signup-1").addClass("hidden");
+                    $("#signup-2").removeClass("hidden");
+                    $("#li-step0").removeClass("active");
+                    $("#li-step1").addClass("active");
+                    $("#ny").removeClass("hidden");
+                    $("#no-ny").addClass("hidden");
+                    $("#0-step").click(function() {
+                        $("#signup-1").removeClass("hidden");
+                        $("#signup-2").addClass("hidden");
+                        $("#signup-3").addClass("hidden");
+                        addRemoveClass('#signup-4', 'hidden', true)
+                        $("#li-step0").addClass("active");
+                        $("#li-step1").removeClass("active");
+                        $("#li-step2").removeClass("active");
+                        $("#li-step3").removeClass("active");
+                        $("#1-step").click(function() {
+                            $("#signup-1").addClass("hidden");
+                            $("#signup-2").removeClass("hidden");
+                            $("#li-step0").removeClass("active");
+                            $("#li-step1").addClass("active");
+                        });
+                    });
+                } else {
+                    alert('Please Select a state');
+                    return false;
+                }
+            });
+            $("#second-step").click(function() {
+                var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+                var zipMaxLength = (countryToSet == "PH") ? 4 : 5;
+                var fname = $('#fname').val();
+                var lname = $('#lname').val();
+                var mobile = $('#mobile').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var passwordc = $('#passwordc').val();
+                var zip = $('#zip').val();
+                var country_id = $("#country option:selected").val();
+                var state_id = $("#select-state option:selected").val();
+                var how_hear_us = $("[name='hear']:checked").val();
+                var refferal = $('#refferal').val();
+
+                if (fname.trim() == '') {
+                    alert('Please enter your First Name.');
+                    $('#fname').focus();
+                    return false;
+                } else if (lname.trim() == '') {
+                    alert('Please enter your Last Name.');
+                    $('#lname').focus();
+                    return false;
+                } else if (mobile.trim() == '') {
+                    alert('Please enter your Mobile.');
+                    $('#mobile').focus();
+                    return false;
+                } else if (!/^[1-9]{1}[0-9]{5,9}$/.test(mobile)) {
+                    alert('Please enter valid Mobile Number');
+                    $('#mobile').focus();
+                    return false;
+                } else if (email.trim() == '') {
+                    alert('Please enter your email.');
+                    $('#email').focus();
+                    return false;
+                } else if (email.trim() != '' && !reg.test(email)) {
+                    alert('Please enter valid email.');
+                    $('#email').focus();
+                    return false;
+                } else if (password.trim() == '') {
+                    alert('Please enter the password');
+                    $('#password').focus();
+                    return false;
+                } else if (password.trim().length < 6) {
+                    alert('Please enter atleast 6 characters');
+                    $('#password').focus();
+                    return false;
+                } else if (passwordc.trim() == '') {
+                    alert('Please enter confirm password');
+                    $('#passwordc').focus();
+                    return false;
+                } else if (password !== passwordc) {
+                    alert('Password and confirm password doesn\'t match');
+                    $('#password').focus();
+                    return false;
+                } else if (zip.trim() == '') {
+                    alert('Please Choose Your Zip Code.');
+                    $('#zip').focus();
+                    return false;
+                } else if (zip.length < zipMaxLength) {
+                    alert('Please Enter valid zip code.');
+                    $('#zip').focus();
+                    return false;
+                }
+                $.ajax({
+                    method: 'POST',
+                    url: VENDOR_API_URL + '/otp/send',
+                    data: {
+                        email,
+                        mobile: countryCode + mobile,
+                    },
+                    success: function(data, status) {
+                        console.log('OTP send Successfully:', data);
+                        if (typeof data == 'string') {
+                            data = JSON.parse(data);
+                        }
+                        if (data.error || data.flag == 0) {
+                            alert(data.error || data.message);
+                            return false;
+                        } else {
+                            $("#signup-1").addClass("hidden");
+                            $("#signup-2").addClass("hidden");
+                            $("#signup-3").removeClass("hidden");
+
+                            $("#li-step0").removeClass("active");
+                            $("#li-step1").removeClass("active");
+                            $("#li-step2").addClass("active");
+
+                            $("#1-step").click(function() {
+
+                                $("#signup-1").addClass("hidden");
+                                $("#signup-2").removeClass("hidden");
+                                $("#signup-3").addClass("hidden");
+                                addRemoveClass('#signup-4', 'hidden', true)
+                                $("#li-step3").removeClass("active");
+                                $("#li-step1").addClass("active");
+                            });
+
+                            $("#signup-1").addClass("hidden");
+                            $("#signup-2").addClass("hidden");
+                            //$("#signup-3").addClass("hidden");
+                            addRemoveClass('#signup-4', 'hidden', false)
+
+                            $("#li-step0").removeClass("active");
+                            $("#li-step1").removeClass("active");
+                            //$("#li-step2").removeClass("active");
+                            $("#li-step3").addClass("active");
+
+                            $("#3-step").click(function() {
+
+                                $("#signup-1").addClass("hidden");
+                                $("#signup-2").addClass("hidden");
+                                //$("#signup-3").removeClass("hidden");
+                                addRemoveClass('#signup-4', 'hidden', false)
+
+                                //$("#li-step2").removeClass("active");
+                                $("#li-step1").removeClass("active");
+                                $("#li-step3").addClass("active");
+
+                            });
+                            $('html, body').animate({
+                                scrollTop: 0
+                            }, 'slow');
+                            alert('An OTP has been sent on your mobile number');
+                        }
+                    },
+                    error: function(data, status) {
+                        console.log('Error while sending OTP: ', data);
+                    }
+                });
+            });
+            $("#resendOtp").click(function() {
+                var mobile = $('#mobile').val();
+                var email = $('#email').val();
+                $.ajax({
+                    method: 'POST',
+                    url: VENDOR_API_URL + '/otp/resend',
+                    data: {
+                        email,
+                        mobile: countryCode + mobile,
+                    },
+                    success: function(data, status) {
+                        console.log('OTP resend Successfully:', data);
+                        if (typeof data == 'string') {
+                            data = JSON.parse(data);
+                        }
+                        if (data.error) {
+                            alert(data.error);
+                            return false;
+                        }
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 'slow');
+                        alert('An OTP has been sent on your mobile number');
+                    },
+                    error: function(data, status) {
+                        console.log('Error while resending OTP: ', data);
+                    }
+                });
+            });
+            $("#changeMobile").click(function() {
+                $("#signup-2").removeClass("hidden");
+                addRemoveClass('#signup-4', 'hidden', true)
+                $("#mobile").focus();
+                $("#li-step1").addClass("active");
+                $("#li-step3").removeClass("active");
+            })
+            $("#fourth-step").click(function() {
+                var first_name = $('#fname').val();
+                var last_name = $('#lname').val();
+                var driver_mobile = countryCode + $('#mobile').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var zipcode = $('#zip').val();
+                var country_id = $("#country option:selected").val();
+                var state_id = $("#select-state option:selected").val();
+                var subtype_id = $("#select-subtype option:selected").val();
+                var otp = $('#otp').val();
+                if (otp.trim() == '') {
+                    alert('Please Enter OTP');
+                    otp.focus();
+                    return false;
+                } else if (!/^[0-9]{4}$/.test(otp)) {
+                    alert('Enter OTP sent to your Mobile.')
+                    otp.focus();
+                    return false;
+                }
+                that = this;
+                $(that).attr('disabled', true).addClass('disabled');;
+                $.ajax({
+                    method: 'POST',
+                    url: VENDOR_API_URL + '/otp/verify',
+                    data: {
+                        mobile: driver_mobile,
+                        otp
+                    },
+                    success: function(data, status) {
+                        if (typeof data == 'string') {
+                            data = JSON.parse(data);
+                        }
+                        if (data.error || data.flag == 0) {
+                            $(that).attr('disabled', false).removeClass('disabled');
+                            alert(data.error || data.message);
+                            return false;
+                        } else {
+                            $('html, body').animate({
+                                scrollTop: 0
+                            }, 'slow');
+                            $.ajax({
+                                method: 'POST',
+                                url: VENDOR_API_URL + '/register',
+                                data: {
+                                    first_name,
+                                    last_name,
+                                    mobile: driver_mobile,
+                                        email,
+                                        password,
+                                        zipcode,
+                                        country_id,
+                                        state_id,
+                                        subtype_id,
+                                },
+                                success: function(data, status) {
+                                    console.log('data after register:', data);
+                                    if (typeof data == 'string') {
+                                        data = JSON.parse(data);
+                                    }
+                                    if (data.error) {
+                                        $(that).attr('disabled', false).removeClass('disabled');
+                                        alert(data.error);
+                                        return false;
+                                    } else {
+                                        $("#signup-1").addClass("hidden");
+                                        $("#signup-2").addClass("hidden");
+                                        $("#signup-3").addClass("hidden");
+                                        addRemoveClass('#signup-4', 'hidden', true)
+                                        $("#signup-5").removeClass("hidden");
+                                        $("#main-hidden").addClass("hidden");
+                                        $("#main-hidden1").addClass("hidden");
+                                    }
+                                    $('html, body').animate({
+                                        scrollTop: 0
+                                    }, 'slow');
+                                },
+                                error: function(data, status) {
+                                    $('html, body').animate({
+                                        scrollTop: 0
+                                    }, 'slow');
+                                    $(that).attr('disabled', false).removeClass('disabled');
+                                    console.log('Affiliate registration failed!', data)
+                                }
+                            });
+                        }
+                    },
+                    error: function(data, status) {
+                        $(that).attr('disabled', false).removeClass('disabled');
+                        console.log('OTP verification failed!', data)
+                    }
+                })
+            });
+            $("#six-step").click(function() {
+                $("#signup-1").addClass("hidden");
+                $("#signup-2").addClass("hidden");
+                $("#signup-3").addClass("hidden");
+                $("#signup-4").addClass("hidden");
+                $("#signup-5").addClass("hidden");
+                $("#signup-6").addClass("hidden");
+                $("#signup-7").addClass("hidden");
+                $("#main-hidden").addClass("hidden");
+                $("#main-hidden1").addClass("hidden");
+                $("#signup-8").removeClass("hidden");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header class="header header--white">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header__content">
+                        <a href="index.html" class="header__logo">
+                            <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
+                            <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
+                        </a>
+                        <nav class="header__nav">
+                            <a href="driverlogin.html">Drive</a>
+                            <a href="riderlogin.html">Ride</a>
+                            <a href="index.html">Home</a>
+                            <div class="header__social">
+                                <a href="https://twitter.com/ridequdos"><i class="icon-tw"></i></a>
+                                <a href="https://www.facebook.com/QudosRide/"><i class="icon-fb"></i></a>
+                                <a href="https://www.linkedin.com/company/qudosride/"><i class="icon-linkedin"></i></a>
+                                <a href="https://www.instagram.com/qudosride/"><i class="icon-instagram"></i></a>
+                            </div>
+                        </nav>
+                        <button class="header__menu" type="button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="sign">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-xl-10 offset-xl-1">
+                    <div class="sign__content">
+                        <!--Start Row Sign Up-->
+                        <div class="row">
+                            <div class="popup-main-content">
+                                <!--Start Sign up Step 1-->
+                                <div class="row row-input">
+                                    <div id="main-hidden" class="col-md-5">
+                                        <h3 id="signup-title">Affiliate Sign Up</h3>
+                                        <ul id="ny" class="signup-step">
+                                            <li id="li-step0" class="active">
+                                                <a id="0-step"></a>
+                                            </li>
+                                            <li id="li-step1">
+                                                <a id="1-step"></a>
+                                            </li>
+                                            <!--<li id="li-step2"><a id="2-step"></a></li>-->
+                                            <li id="li-step3">
+                                                <a id="3-step"></a>
+                                            </li>
+                                        </ul>
+                                        <ul id="no-ny" class="signup-step hidden">
+                                            <li id="li-step4">
+                                                <a id="4-step"></a>
+                                            </li>
+                                            <li id="li-step5" class="active">
+                                                <a id="5-step"></a>
+                                            </li>
+                                            <li id="li-step6">
+                                                <a id="6-step"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div id="main-hidden1" class="col-md-7" style="margin-bottom: 16px !important;">
+                                        Qudos creates the opportunity for affiliates to build their business.
+                                    </div>
+                                    <div id="signup-1" style="position:relative; float:left; width:100%;" class="">
+                                        <div class="col-md-6">
+                                            <label>Which Country are you?</label>
+                                            <select id="country" class="select-state" name="state">
+                                            </select>
+                                            <a id="first-step" class="submit">Next</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End Sign up Step 1-->
+                                <!--Start Sign up Step 2-->
+                                <div id="signup-2" class="row row-input hidden">
+                                    <div class="row row-input">
+                                        <div class="col-md-6">
+                                            <label>First Name</label>
+                                            <input required id="fname" class="user-input" name="fname" type="text" placeholder="Your First Name">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Last Name</label>
+                                            <input id="lname" class="user-input" name="lname" type="text" placeholder="Your Last Name">
+                                        </div>
+                                    </div>
+                                    <div class="row row-input">
+                                        <div class="col-md-6">
+                                            <label>Mobile Number</label>
+                                            <div class="row-input">
+                                                <input id="mobile" class="mobile" type="tel" inputmode="numeric" placeholder="800-000-0000">
+                                                <span class="main-mobile">+1-</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Email Address</label>
+                                            <input id="email" class="email-add" name="lname" type="text" placeholder="Enter your email">
+                                        </div>
+                                    </div>
+                                    <div class="row row-input">
+                                        <div class="col-md-6">
+                                            <label>Password</label>
+                                            <input required id="password" class="user-input" name="password" type="password" placeholder="Password">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Confirm Password</label>
+                                            <input id="passwordc" class="user-input" name="passwordc" type="password" placeholder="Confirm Password">
+                                        </div>
+                                    </div>
+                                    <div class="row row-input">
+                                        <div class="col-md-6">
+                                            <label id="stateLabel">Select State</label>
+                                            <select id="select-state" class="select-state" name="state">
+                                                <option value="AL">Alabama</option>
+                                                <option value="AK">Alaska</option>
+                                                <option value="AZ">Arizona</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="CA">California</option>
+                                                <option value="CO">Colorado</option>
+                                                <option value="CT">Connecticut</option>
+                                                <option value="DE">Delaware</option>
+                                                <option value="DC">District Of Columbia</option>
+                                                <option value="FL">Florida</option>
+                                                <option value="GA">Georgia</option>
+                                                <option value="HI">Hawaii</option>
+                                                <option value="ID">Idaho</option>
+                                                <option value="IL">Illinois</option>
+                                                <option value="IN">Indiana</option>
+                                                <option value="IA">Iowa</option>
+                                                <option value="KS">Kansas</option>
+                                                <option value="KY">Kentucky</option>
+                                                <option value="LA">Louisiana</option>
+                                                <option value="ME">Maine</option>
+                                                <option value="MD">Maryland</option>
+                                                <option value="MA">Massachusetts</option>
+                                                <option value="MI">Michigan</option>
+                                                <option value="MN">Minnesota</option>
+                                                <option value="MS">Mississippi</option>
+                                                <option value="MO">Missouri</option>
+                                                <option value="MT">Montana</option>
+                                                <option value="NE">Nebraska</option>
+                                                <option value="NV">Nevada</option>
+                                                <option value="NH">New Hampshire</option>
+                                                <option value="NJ">New Jersey</option>
+                                                <option value="NM">New Mexico</option>
+                                                <option selected value="NY">New York</option>
+                                                <option value="NC">North Carolina</option>
+                                                <option value="ND">North Dakota</option>
+                                                <option value="OH">Ohio</option>
+                                                <option value="OK">Oklahoma</option>
+                                                <option value="OR">Oregon</option>
+                                                <option value="PA">Pennsylvania</option>
+                                                <option value="RI">Rhode Island</option>
+                                                <option value="SC">South Carolina</option>
+                                                <option value="SD">South Dakota</option>
+                                                <option value="TN">Tennessee</option>
+                                                <option value="TX">Texas</option>
+                                                <option value="UT">Utah</option>
+                                                <option value="VT">Vermont</option>
+                                                <option value="VA">Virginia</option>
+                                                <option value="WA">Washington</option>
+                                                <option value="WV">West Virginia</option>
+                                                <option value="WI">Wisconsin</option>
+                                                <option value="WY">Wyoming</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Zip Code</label>
+                                            <input id="zip" class="zip" type="text" onkeyup="trimZip()" inputmode="numeric" placeholder="Your Area ZIP code">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Affiliate Type</label>
+                                            <select id="select-subtype" class="select-state" name="subtype">
+                                            </select>
+                                        </div>
+                                        <div class="row row-input">
+                                            <div class="col-md-6 but-next">
+                                                <a id="second-step" href="#" class="submit">Next</a>
+                                                <p>Already have an account? <a href="affiliatelogin.html"><strong>Login</strong></a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="signup-4" class="row row-input  hidden">
+                                    <div class="col-md-6 top-margin">
+                                        <p><strong>Confirm your Mobile Number</strong></p>
+                                        <label>Enter OTP sent to your Mobile number</label>
+                                        <input type="text" id="otp" name="verify-phone" class="phone-verify" placeholder="0000" maxlength="4" inputmode="numeric">
+                                        <div class="row row-input a-color">
+                                            <div class="col-xs-5"><a id="resendOtp" href="javascript:void(0)">Resend OTP</a></div>
+                                            <div class="col-xs-7"><a id="changeMobile" href="javascript:void(0)">Change Mobile number</a></div>
+                                        </div>
+                                        <div class="row row-input top-margin">
+                                            <button id="fourth-step" href="javascript:;" class="submit">Create My Affiliate Account</button>
+                                        </div>
+                                        <div class="row row-input top-margin a-color">
+                                            <p>Already have an account? <a href="affiliatelogin.html">Login</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End Sign Up Step 4-->
+                                <!--Start Sign up Step 5-->
+                                <div id="signup-5" class="row row-input hidden">
+                                    <div class="col-md-12">
+                                        <p class="small-show"><img src="core__assets/img/logins/mail-sucess.png" alt="sucess">
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h3>Welcome to Qudos</h3>
+                                        <p class="top-margin">Please verify email by clicking on the link sent to the email you provided.
+                                        </p>
+                                        <div class="row clear">
+                                            <div class="col-md-6">
+                                                <a href="affiliatelogin.html" class="submit-login">Login</a>
+                                            </div>
+                                            <div class="col-md-6" style="visibility: hidden">
+                                                <a href="#" class="submit-veri">Resend Verification</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 small-hide">
+                                        <p align="center"><img src="core__assets/img/logins/mail-sucess.png" width="200" height="200" alt="sucess">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Row Sign Up-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="service-wrap">
+        <div include-html="core__components/footer/footer-black.html"></div>
+    </div>
+    <script src="core__assets/js/vendors/owl/owl.carousel.min.js"></script>
+    <script src="core__assets/js/config.js"></script>
+    <script src="core__assets/js/core.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149373672-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149373672-1');
+    </script>
+</body>
+
+</html>
