@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Qudos | About Us</title> 
+    <title>Qudos | About Us</title>
     <!-- Primary Meta Tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="Qudos aims for our riders to have a safe and comfortable ride-hailing experience in NYC.">
     <meta name="copyright" content="Qudos Ride with your Favorite™">
-    <!-- Open Graph / Facebook --> 
+    <!-- Open Graph / Facebook -->
     <meta property="og:url" content="">
     <meta property="og:title" content="Qudos® | Why Drive With Qudos?">
     <meta property="og:description" content="Qudos aims for our riders to have a safe and comfortable ride-hailing experience in NYC.">
@@ -53,6 +53,19 @@
     }
     </script>
     <style type="text/css">
+    .section [class^=col-] {
+        padding: 5rem 0 !important;
+    }
+
+    .section-core--drive #platform-3 {
+        top: 7.35rem !important;
+        left: 0;
+    }
+
+    .section-core--connect {
+        padding-bottom: 0rem;
+    }
+
     .section-core--connect .col-md-4 {
         background-image: none !important;
         background-color: #fff;
@@ -77,7 +90,6 @@
     .core__header--h1::after {
         background: none !important;
     }
-
 
     .section-core--schedule .col-sm-12:first-child {
         background: #238ec6;
@@ -104,10 +116,10 @@
     }
 
     .body__content {
-        background: pink !white;
-    }
+    background: white url(../core__assets/img/core__about/our_leadership.png);
+}
 
-    p.core__parag.team__box{
+    p.core__parag.team__box {
         text-align: center;
         max-width: 100% !important;
         min-width: 100% !important;
@@ -116,6 +128,56 @@
 
     .section-core--connect [class^=col-] {
         padding: 5rem 1rem;
+    }
+
+    .section.section-core--gallery {
+        background: #fafafa;
+    }
+    
+
+    .section-core--gallery{
+        padding: 5rem 1rem;
+    }
+    .section-core--gallery [class^=col-] {
+        padding: 1rem !important;
+    }
+
+    .core__header-special--2:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 8.6rem;
+        height: 3px;
+        bottom: 5rem;
+        left: 0;
+        background: -webkit-gradient(linear, left top, right top, from(#83bada), color-stop(47%, #83bada), color-stop(52%, #1f8dc6), to(#1f8dc6));
+        background: linear-gradient(to right, #83bada 0%, #83bada 47%, #1f8dc6 52%, #1f8dc6 100%);
+    }
+
+    .nav-icon.d-flex h5 {
+        text-align: center;
+        color: #212529;
+        font-weight: 300;
+        padding-bottom: 1rem;
+    }
+
+    .nav-icon.d-flex.active h5 {
+        color: #218ec7;
+        font-weight: 400;
+        border-bottom: .10rem solid;
+    }
+
+    img.img-thumbnail.shadow-sm {
+        box-shadow: 10px 10px #218ec7 !important;
+    }
+
+    h5.my-1 {
+        font-weight: 600;
+    }
+
+    .tab-content {
+        background: rgba(33, 142, 199, 0.5);
+        padding: 2.50rem;
     }
     </style>
 </head>
@@ -131,8 +193,8 @@
                             <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
                         </a>
                         <nav class="header__nav">
-                            <a href="promo.html">Promo</a>
-                            <a href="affiliatelogin.html">Affiliate</a>
+                            <!-- <a href="promo.html">Promo</a> -->
+                            <a href="#">Essentials</a>
                             <a href="drive.html">Drive</a>
                             <a href="welcome.html">Ride</a>
                             <a class="desk" href="mailto:support@drivequdos.com">Contact Us</a>
@@ -195,7 +257,7 @@
                     <div class="col-sm-12 col-md-8">
                         <span class="d-inline-block position-relative w-100 h-100">
                             <img id="platform-3" class="img-fluid position-absolute" src="core__assets/img/core__home/platform-base.svg" alt="Platform base">
-                            <img id="platform-4" class="img-fluid position-absolute" data-aos="fade-down" src="core__assets/img/core__drive/platform-3.png" alt="Drive platform image">
+                            <img id="platform-4" class="img-fluid position-absolute" data-aos="fade-down" src="core__assets/img/core__start/start-block.png" alt="Drive platform image">
                         </span>
                     </div>
                 </div>
@@ -234,86 +296,119 @@
                 </div>
             </div>
         </section>
-        <section class="section section-core--connect body__content">
+        <section class="values body__content">
             <div class="container">
                 <div class="row">
+                    <div class="col text-center">
+                        <h3 class="core__header--h3">Our Leadership</h3>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-12 col-md-12">
-                        <h2 class="core__header--h2">Our Leadership</h2>
                         <nav>
-                            <ul class="nav my-5 d-flex justify-content-between" id="pills-tab" role="tablist">
+                            <ul class="nav my-5 d-flex justify-content-center" id="pills-tab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link nav-icon active d-flex" id="pills-profile-info-tab" data-toggle="pill" href="#pills-profile-info" role="tab" aria-controls="pills-profile-info" aria-selected="true">
-                                        <h4 class="text-center mt-3"><strong>Board of Directors</strong></h4>
+                                        <h5 class="text-center mt-3"><strong>Board of Directors</strong></h4>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link nav-icon d-flex" id="pills-rwq-tab" data-toggle="pill" href="#pills-rwq" role="tab" aria-controls="pills-rwq" aria-selected="false">
-                                        <h4 class="text-center mt-3"><strong>Next Gen Advisory Council</strong></h4>
+                                        <h5 class="text-center mt-3"><strong>Next Gen Advisory Council</strong></h5>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link nav-icon d-flex" id="pills-dwq-tab" data-toggle="pill" href="#pills-dwq" role="tab" aria-controls="pills-dwq" aria-selected="false">
-                                        <h4 class="text-center mt-3"><strong>Senior Advisors</strong></h4>
+                                        <h5 class="text-center mt-3"><strong>Senior Advisors</strong></h5>
                                     </a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="pi__pills-tabContent">
                                 <!--  Board of Directors Info tab start -->
                                 <div class="tab-pane fade show active" id="pills-profile-info" role="tabpanel" aria-labelledby="pills-profile-info-tab">
-                                    <div class="row mb-5">
+                                    <div class="row mt-5">
                                         <div class="container">
                                             <div class="row text-center">
                                                 <!-- Team item -->
                                                 <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/200x200/" alt="" width="100" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
-                                                        <h5 class="mb-0">Neil Anthony Rollon</h5><span class="small text-uppercase text-muted">Chairman & Founder</span>
-
-                                                         <p class="core__parag team__box"> Neil has many years of experience in developing various mobile operating technology platforms.  With his experience as an entrepreneur and tech enthusiast, Neil is 100% laser focused in building Qudos into a world-class platform to give both riders and drivers a much better experience than they are accustomed to.</p>
-                                                         <br>
-
-                                                         <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
-                                                        </p>
-                                                                                        
-                                                    </div>
-                                                </div><!-- End -->
-                                                <!-- Team item -->
-                                                <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/200x200/" alt="" width="100" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
-                                                        <h5 class="mb-0">Greg Rooney</h5><span class="small text-uppercase text-muted">CEO & Director</span>
-
-                                                         <p class="core__parag team__box"> Gregory is an experienced institutional trading professional with a successful track record of performance and risk management at several bulge bracket and boutique financial services firms including Morgan Stanley, Citigroup and Guggenheim Partners.  In addition to front office responsibilities at Morgan Stanley</p>
-                                                         
-                                                         <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
-                                                        </p>
-                                                    </div>
-                                                </div><!-- End -->
-                                                <!-- Team item -->
-                                                <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/200x200/" alt="" width="100" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
-                                                        <h5 class="mb-0">Jerry Raio</h5><span class="small text-uppercase text-muted">COO, Director & Investor Relations</span>
-
-                                                        <p class="core__parag team__box"> Jerry is the Founder, President and CEO of Arbtor Lane Advisors, Inc., a financial service focused consulting firm with expertise in product development, product management, marketing and distribution of investment products. His career on Wall Street spans over 30 years, mostly focused on the distribution of Equity Capital</p>
-                                                       
-                                                       <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
-                                                        </p>
-                                                    </div>
-                                                </div><!-- End -->
-                                                <!-- Team item -->
-                                                <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/200x200/" alt="" width="100" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
-                                                        <h5 class="mb-0">Thomas Sweeney</h5><span class="small text-uppercase text-muted">Director</span>
-
-                                                        <p class="core__parag team__box"> Tom joined DLC in 2004 as the Chief Operating Officer and was promoted to CEO in 2010. Prior to joining DLC, Tom served as the Vice President of Finance and Senior Financial Officer for a division of ConAgra Foods. Tom started his career at PwC and has held a number of finance and general management positions at Fortune 500 companies including Kraft,</p>
-
+                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                        <h5 class="my-1">Neil Anthony Rollon</h5><span class="small text-uppercase text-muted qudos__blue-text">Chairman & Founder</span>
+                                                        <p class="core__parag team__box"> Neil has many years of experience in developing various mobile operating technology platforms. With his experience as an entrepreneur and tech enthusiast, Neil is 100% laser focused in building Qudos into a world-class platform to give both riders and</p>
                                                         <p class="core__parag team__box">
                                                             <a href="#" class="header__btn">read more ></a>
                                                         </p>
                                                     </div>
                                                 </div><!-- End -->
-
+                                                <!-- Team item -->
+                                                <div class="col-xl-3 col-sm-6 mb-5">
+                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                        <h5 class="my-1">Greg Rooney</h5><span class="small text-uppercase text-muted qudos__blue-text">CEO & Director</span>
+                                                        <p class="core__parag team__box">Gregory is an experienced institutional trading professional with a successful track record of performance and risk management at several bulge bracket and boutique financial services firms including Morgan Stanley, Citigroup and Guggenheim Partners.</p>
+                                                        <p class="core__parag team__box">
+                                                            <a href="#" class="header__btn">read more ></a>
+                                                        </p>
+                                                    </div>
+                                                </div><!-- End -->
+                                                <!-- Team item -->
+                                                <div class="col-xl-3 col-sm-6 mb-5">
+                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                        <h5 class="my-1">Jerry Raio</h5><span class="small text-uppercase text-muted qudos__blue-text">COO, Director & Investor Relations</span>
+                                                        <p class="core__parag team__box">Jerry is the Founder, President and CEO of Arbor Lane Advisors, Inc., a financial service focused consulting firm with expertise in product development, product management, marketing and distribution of investment products. His career on Wall</p>
+                                                        <p class="core__parag team__box">
+                                                            <a href="#" class="header__btn">read more ></a>
+                                                        </p>
+                                                    </div>
+                                                </div><!-- End -->
+                                                <!-- Team item -->
+                                                <div class="col-xl-3 col-sm-6 mb-5">
+                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                        <h5 class="my-1">Thomas Sweeney</h5><span class="small text-uppercase text-muted qudos__blue-text">Director</span>
+                                                        <p class="core__parag team__box">Tom joined DLC in 2004 as the Chief Operating Officer and was promoted to CEO in 2010. Prior to joining DLC, Tom served as the Vice President of Finance and Senior Financial Officer for a division of ConAgra Foods. Tom started his career at PwC and has held a number of finance and</p>
+                                                        <p class="core__parag team__box">
+                                                            <a href="#" class="header__btn">read more ></a>
+                                                        </p>
+                                                    </div>
+                                                </div><!-- End -->
+                                                <!-- Team item -->
+                                                <div class="col-xl-3 col-sm-6 mb-5">
+                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                        <h5 class="my-1">Roland Isaac</h5><span class="small text-uppercase text-muted qudos__blue-text">Director and CFO</span>
+                                                        <p class="core__parag team__box"> Roland P. Isaac is the President and Founder of Isaac Group Healthcare. Isaac Group Healthcare is a staffing and recruitment company specializing in the hiring and placement of healthcare workers in hospitals and healthcare facilities. He was</p>
+                                                        <p class="core__parag team__box">
+                                                            <a href="#" class="header__btn">read more ></a>
+                                                        </p>
+                                                    </div>
+                                                </div><!-- End -->
+                                                <!-- Team item -->
+                                                <div class="col-xl-3 col-sm-6 mb-5">
+                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                        <h5 class="my-1">Debbie Hopkins</h5><span class="small text-uppercase text-muted qudos__blue-text"> Director</span>
+                                                        <p class="core__parag team__box"> Deborah has been a board member with Solex Payroll, an HCM company in New York, since 2009. Deborah owns AGB Holdings, a real estate management company based in New York. Deborah’s past employments include JP Morgan Chase within the for</p>
+                                                        <p class="core__parag team__box">
+                                                            <a href="#" class="header__btn">read more ></a>
+                                                        </p>
+                                                    </div>
+                                                </div><!-- End -->
+                                                <!-- Team item -->
+                                                <div class="col-xl-3 col-sm-6 mb-5">
+                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                        <h5 class="my-1">David Boucher</h5><span class="small text-uppercase text-muted qudos__blue-text">Director</span>
+                                                        <p class="core__parag team__box">David Boucher holds a leadership position as an Executive for Solex HCM. David also serves as managing member for Five Capital Management LLC and has been a master planner, developer, and manager of the New England Sports</p>
+                                                        <p class="core__parag team__box">
+                                                            <a href="#" class="header__btn">read more ></a>
+                                                        </p>
+                                                    </div>
+                                                </div><!-- End -->
+                                                <!-- Team item -->
+                                                <div class="col-xl-3 col-sm-6 mb-5">
+                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                        <h5 class="my-1">Alexander Sklavos</h5><span class="small text-uppercase text-muted qudos__blue-text">Director & General Counsel</span>
+                                                        <p class="core__parag team__box"> Alex is admitted to the New York State Bar and the United States Federal Courts, and the District of Columbia. Mr. Sklavos received a Bachelor of Arts degree in Economics from Union College and his Juris Doctor from St. John’s University School of Law</p>
+                                                        <p class="core__parag team__box">
+                                                            <a href="#" class="header__btn">read more ></a>
+                                                        </p>
+                                                    </div>
+                                                </div><!-- End -->
                                             </div>
                                         </div>
                                     </div>
@@ -321,15 +416,31 @@
                                 <!--  Board of Directors Info tab end -->
                                 <!-- Ride with Qudos tab start -->
                                 <div class="tab-pane fade" id="pills-rwq" role="tabpanel" aria-labelledby="pills-rwq-tab">
-                                    <div class="row mb-5">
-                                        2
+                                    <div class="row text-center mb-5">
+                                        <div class="col-xl-3 col-sm-6 mb-5">
+                                            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                <h5 class="my-1">Christian Palmer</h5><span class="small text-uppercase text-muted qudos__blue-text">Advisor</span>
+                                                <p class="core__parag team__box"> Christian is a learning, development, and onboarding professional that has a wide range of industry experience including sales, consulting, hospitality, and retail environments. Mr. Palmer received a Master of Science in Education and a Bachelor of Science in Criminal Justice,</p>
+                                                <p class="core__parag team__box">
+                                                    <a href="#" class="header__btn">read more ></a>
+                                                </p>
+                                            </div>
+                                        </div><!-- End -->
                                     </div>
                                 </div>
                                 <!-- Ride with Qudos tab end -->
                                 <!-- Drive with Qudos tab start -->
                                 <div class="tab-pane fade" id="pills-dwq" role="tabpanel" aria-labelledby="pills-dwq-tab">
-                                    <div class="row mb-5">
-                                        3
+                                       <div class="row text-center mb-5">
+                                        <div class="col-xl-3 col-sm-6 mb-5">
+                                            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                <h5 class="my-1"></h5><span class="small text-uppercase text-muted qudos__blue-text"></span>
+                                                <p class="core__parag team__box"></p>
+                                                <p class="core__parag team__box">
+                                                    <a href="#" class="header__btn">read more ></a>
+                                                </p>
+                                            </div>
+                                        </div><!-- End -->
                                     </div>
                                 </div>
                             </div>
@@ -338,10 +449,32 @@
                 </div>
             </div>
         </section>
-        <section class="section">
+        <section class="section section-core--gallery">
             <div class="container">
                 <div class="row">
-                </div>
+                    <div class="col-sm-12 col-md-5">
+                        <p class="core__parag">Our Community</p>
+                        <h2 class="core__header--h2"><span class="qudos__blue-text">Qudos</span> always values what our riders and drivers want.</h2>
+                    </div>
+
+                <div class="row text-center">
+                    <div class="col-sm-12 col-md-8">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <img src="http://fakeimg.pl/350x300/" alt="" width="350" height="300" class="img-fluid rounded mb-3 img-thumbnail">
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <img src="http://fakeimg.pl/350x300/" alt="" width="350" height="300" class="img-fluid rounded mb-3 img-thumbnail">
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <img src="http://fakeimg.pl/750x300/" alt="" width="750" class="img-fluid rounded mb-3 img-thumbnail">
+                            </div>
+                        </div>       
+                    </div>
+                     <div class="col-sm-12 col-md-4 mt-3">
+                          <img src="http://fakeimg.pl/350x660/" alt="" width="350" height="660" class="img-fluid rounded mb-3 img-thumbnail">
+                     </div>
+                 </div>        
             </div>
         </section>
         <section class="section section-core--outro">
