@@ -4,277 +4,273 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Log into your Qudos account to continue driving and providing our clients with the best service.">
+    <meta name="keywords" content="">
     <!--CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/css/intlTelInput.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../__assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../__assets/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="../../__assets/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/bootstrap/bootstrap.min.css">
     <!-- Animate on Scroll -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Owl Carousel -->
-    <link rel="stylesheet" href="../../__assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/owl/owl.carousel.min.css">
     <!-- Fontello -->
-    <link rel="stylesheet" href="../../__assets/css/fontello.css">
-    <link rel="stylesheet" href="../../__assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans:400,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="core__assets/css/vendors/fontello/fontello.css">
+    <link rel="stylesheet" href="core__assets/fonts/fontawesome/css/all.min.css">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="../../__assets/img/favIcon.png">
+    <link rel="shortcut icon" type="image/png" href="core__assets/img/favIcon.png">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../../__assets/css/styles.min.css">
-    <link rel="stylesheet" href="logins/css/main.css">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans:400,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="logins/img/favIcon.png">
-    <meta name="description" content="Log into your Qudos account to continue driving and providing our clients with the best service.">
-    <meta name="keywords" content="">
+    <link rel="stylesheet" href="core__assets/css/vendors/legacy/styles.min.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/legacy/main.css">
     <title>Qudos | Driver Login</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/config.js"></script>
+    <script src="core__assets/js/vendors/legacy/config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/utils.js"></script>
+    
+     <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Qudos",
+        "operatingSystem": "iOS",
+        "applicationCategory": "Travel and Local",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.0",
+            "ratingCount": "14"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
     <script type="text/javascript">
-    $(function() {
-
-        $("#forget").click(function() {
-            $("#main-login").addClass("hidden");
-            $("#reset1").removeClass("hidden");
-            $("#signing_heading").addClass("hidden");
-            $("#reset_heading").removeClass("hidden");
-        });
-
-
-        $("#reset-2").click(function() {
-            var countryCode = '+' + $("#mobile1").intlTelInput("getSelectedCountryData").dialCode + '-';
-            var reg = /^[1-9]{1}[0-9]{5,9}$/;
-            var mobile1 = $('#mobile1').val();
-
-
-            if (mobile1.trim() == '') {
-                alert('Please enter your Mobile Number.');
-                $('#mobile1').focus();
-                return false;
-            } else if (!reg.test(mobile1)) {
-                alert('Please enter valid Mobile Number.');
-                $('#mobile1').focus();
-                return false;
-            }
-
-            $.ajax({
-                method: 'POST',
-                url: DRIVER_API_URL + '/mobile_forgot_password',
-                async: true,
-                data: {
-                    driver_mobile: countryCode + mobile1,
-                    reg_as: 0
-                },
-                success: function(data, status) {
-                    console.log('OTP has been sent', data);
-                    if (typeof data === "string") {
-                        data = JSON.parse(data);
-                    }
-                    if (data.error) {
-                        alert(data.error);
-                        return;
-                    }
-                    $("#signing_heading").addClass("hidden");
-                    $("#reset_heading").addClass("hidden");
-                    $("#reset2_heading").addClass("hidden");
-                    $("#reset3_heading").addClass("hidden");
-                    $("#main-login").addClass("hidden");
-                    $("#reset1").addClass("hidden");
-                    $("#reset2").removeClass("hidden");
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 'slow');
-                },
-                error: function(data, status) {
-                    console.log('Error occured ')
-                }
+        $(function() {
+            $("#forget").click(function() {
+                $("#main-login").addClass("hidden");
+                $("#reset1").removeClass("hidden");
+                $("#signing_heading").addClass("hidden");
+                $("#reset_heading").removeClass("hidden");
             });
-
-        });
-
-
-        $("#changeMobile").click(function() {
-            $("#reset1").removeClass("hidden");
-            $("#reset2").addClass("hidden");
-            $("#signing_heading").addClass("hidden");
-            $("#reset_heading").removeClass("hidden");
-            $("#reset2_heading").addClass("hidden");
-        })
-        $("#resendOtp").click(function() {
-            var countryCode = '+' + $("#mobile1").intlTelInput("getSelectedCountryData").dialCode + '-';
-            var mobile1 = $('#mobile1').val();
-            $.ajax({
-                method: 'POST',
-                url: DRIVER_API_URL + '/resend_otp',
-                async: true,
-                data: {
-                    driver_mobile: countryCode + mobile1,
-                    is_approved: 1
-                },
-                success: function(data, status) {
-                    console.log('OTP has been sent', data);
-                    if (typeof data === "string") {
-                        data = JSON.parse(data);
-                    }
-                    if (data.error) {
-                        alert(data.error);
-                        return false;
-                    } else {
-                        alert(data.log);
-                    }
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 'slow');
-                },
-                error: function(data, status) {
-                    console.log('Error occured while resending otp')
+            $("#reset-2").click(function() {
+                var countryCode = '+' + $("#mobile1").intlTelInput("getSelectedCountryData").dialCode + '-';
+                var reg = /^[1-9]{1}[0-9]{5,9}$/;
+                var mobile1 = $('#mobile1').val();
+                if (mobile1.trim() == '') {
+                    alert('Please enter your Mobile Number.');
+                    $('#mobile1').focus();
+                    return false;
+                } else if (!reg.test(mobile1)) {
+                    alert('Please enter valid Mobile Number.');
+                    $('#mobile1').focus();
+                    return false;
                 }
+                $.ajax({
+                    method: 'POST',
+                    url: DRIVER_API_URL + '/mobile_forgot_password',
+                    async: true,
+                    data: {
+                        driver_mobile: countryCode + mobile1,
+                        reg_as: 0
+                    },
+                    success: function(data, status) {
+                        console.log('OTP has been sent', data);
+                        if (typeof data === "string") {
+                            data = JSON.parse(data);
+                        }
+                        if (data.error) {
+                            alert(data.error);
+                            return;
+                        }
+                        $("#signing_heading").addClass("hidden");
+                        $("#reset_heading").addClass("hidden");
+                        $("#reset2_heading").addClass("hidden");
+                        $("#reset3_heading").addClass("hidden");
+                        $("#main-login").addClass("hidden");
+                        $("#reset1").addClass("hidden");
+                        $("#reset2").removeClass("hidden");
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 'slow');
+                    },
+                    error: function(data, status) {
+                        console.log('Error occured ')
+                    }
+                });
             });
-        })
-        $("#reset-3").click(function() {
-
-            var countryCode = '+' + $("#mobile1").intlTelInput("getSelectedCountryData").dialCode + '-';
-            var reg = /^[0-9]{4}$/i;
-            var otp = $('#otp').val();
-
-            if (otp.trim() == '') {
-                alert('Please enter OTP sent to your Mobile Number.');
-                $('#otp').focus();
-                return false;
-            } else if (!reg.test(otp)) {
-                alert('Please enter valid OTP.');
-                $('#otp').focus();
-                return false;
-            }
-            var mobile1 = $('#mobile1').val();
-            $.ajax({
-                method: 'POST',
-                url: DRIVER_API_URL + '/verify_otp',
-                async: true,
-                data: {
-                    driver_mobile: countryCode + mobile1,
-                    is_approved: 1,
-                    otp: otp
-                },
-                success: function(data, status) {
-                    console.log('OTP verified', data);
-                    if (typeof data === "string") {
-                        data = JSON.parse(data);
+            $("#changeMobile").click(function() {
+                $("#reset1").removeClass("hidden");
+                $("#reset2").addClass("hidden");
+                $("#signing_heading").addClass("hidden");
+                $("#reset_heading").removeClass("hidden");
+                $("#reset2_heading").addClass("hidden");
+            })
+            $("#resendOtp").click(function() {
+                var countryCode = '+' + $("#mobile1").intlTelInput("getSelectedCountryData").dialCode + '-';
+                var mobile1 = $('#mobile1').val();
+                $.ajax({
+                    method: 'POST',
+                    url: DRIVER_API_URL + '/resend_otp',
+                    async: true,
+                    data: {
+                        driver_mobile: countryCode + mobile1,
+                        is_approved: 1
+                    },
+                    success: function(data, status) {
+                        console.log('OTP has been sent', data);
+                        if (typeof data === "string") {
+                            data = JSON.parse(data);
+                        }
+                        if (data.error) {
+                            alert(data.error);
+                            return false;
+                        } else {
+                            alert(data.log);
+                        }
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 'slow');
+                    },
+                    error: function(data, status) {
+                        console.log('Error occured while resending otp')
                     }
-                    if (data.error) {
-                        alert(data.error);
-                        return;
-                    }
-                    $("#main-login").addClass("hidden");
-                    $("#reset1").addClass("hidden");
-                    $("#reset2").addClass("hidden");
-                    $("#reset3").removeClass("hidden");
-                    $("#signing_heading").addClass("hidden");
-                    $("#reset_heading").addClass("hidden");
-                    $("#reset2_heading").addClass("hidden");
-                    $("#reset3_heading").addClass("hidden");
-                    $("#reset4_heading").removeClass("hidden");
+                });
+            })
+            $("#reset-3").click(function() {
 
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 'slow');
-                },
-                error: function(data, status) {
-                    console.log('Error occured during otp verification', data);
+                var countryCode = '+' + $("#mobile1").intlTelInput("getSelectedCountryData").dialCode + '-';
+                var reg = /^[0-9]{4}$/i;
+                var otp = $('#otp').val();
+
+                if (otp.trim() == '') {
+                    alert('Please enter OTP sent to your Mobile Number.');
+                    $('#otp').focus();
+                    return false;
+                } else if (!reg.test(otp)) {
+                    alert('Please enter valid OTP.');
+                    $('#otp').focus();
+                    return false;
                 }
+                var mobile1 = $('#mobile1').val();
+                $.ajax({
+                    method: 'POST',
+                    url: DRIVER_API_URL + '/verify_otp',
+                    async: true,
+                    data: {
+                        driver_mobile: countryCode + mobile1,
+                        is_approved: 1,
+                        otp: otp
+                    },
+                    success: function(data, status) {
+                        console.log('OTP verified', data);
+                        if (typeof data === "string") {
+                            data = JSON.parse(data);
+                        }
+                        if (data.error) {
+                            alert(data.error);
+                            return;
+                        }
+                        $("#main-login").addClass("hidden");
+                        $("#reset1").addClass("hidden");
+                        $("#reset2").addClass("hidden");
+                        $("#reset3").removeClass("hidden");
+                        $("#signing_heading").addClass("hidden");
+                        $("#reset_heading").addClass("hidden");
+                        $("#reset2_heading").addClass("hidden");
+                        $("#reset3_heading").addClass("hidden");
+                        $("#reset4_heading").removeClass("hidden");
+
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 'slow');
+                    },
+                    error: function(data, status) {
+                        console.log('Error occured during otp verification', data);
+                    }
+                });
             });
-
-        });
-
-
-        $("#reset-4").click(function() {
-            var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-            var countryCode = '+' + $("#mobile1").intlTelInput("getSelectedCountryData").dialCode + '-';
-            var passwordn = $('#passwordn').val();
-            var passwordnc = $('#passwordnc').val();
-
-            if (passwordn.trim() == '') {
-                alert('Please enter your New Password.');
-                $('#passwordn').focus();
-                return false;
-            } else if (passwordn.trim().length < 6) {
-                alert('Password should be of aleast 6 characters.');
-                $('#passwordn').focus();
-                return false;
-            } else if (passwordnc.trim() == '') {
-                alert('Please enter New Password.');
-                $('#passwordnc').focus();
-                return false;
-            } else if (passwordnc.trim() != passwordn.trim()) {
-                alert('Please enter the same password.');
-                $('#passwordnc').focus();
-                return false;
-
-            }
-            var mobile1 = $('#mobile1').val();
-            var otp = $('#otp').val();
-            $.ajax({
-                method: 'POST',
-                url: DRIVER_API_URL + '/reset_password_mobile',
-                async: true,
-                data: {
-                    driver_mobile: countryCode + mobile1,
-                    password: passwordn,
-                    otp: otp,
-                    is_approved: 1
-                },
-                success: function(data, status) {
-                    console.log('Password reset response: ', data);
-                    if (typeof data === "string") {
-                        data = JSON.parse(data);
-                    }
-                    if (data.error) {
-                        alert(data.error);
-                        return;
-                    }
-                    $("#main-login").addClass("hidden");
-                    $("#reset1").addClass("hidden");
-                    $("#reset2").addClass("hidden");
-                    $("#reset3").addClass("hidden");
-                    $("#reset4").removeClass("hidden");
-                    $("#signing_heading").addClass("hidden");
-                    $("#reset_heading").addClass("hidden");
-                    $("#reset2_heading").addClass("hidden");
-                    $("#reset3_heading").addClass("hidden");
-                    $("#reset4_heading").removeClass("hidden");
-
-                    $('html, body').animate({
-                        scrollTop: 0
-                    }, 'slow');
-                },
-                error: function(data, status) {
-                    console.log('Error occured while resetting password', data);
+            $("#reset-4").click(function() {
+                var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+                var countryCode = '+' + $("#mobile1").intlTelInput("getSelectedCountryData").dialCode + '-';
+                var passwordn = $('#passwordn').val();
+                var passwordnc = $('#passwordnc').val();
+                if (passwordn.trim() == '') {
+                    alert('Please enter your New Password.');
+                    $('#passwordn').focus();
+                    return false;
+                } else if (passwordn.trim().length < 6) {
+                    alert('Password should be of aleast 6 characters.');
+                    $('#passwordn').focus();
+                    return false;
+                } else if (passwordnc.trim() == '') {
+                    alert('Please enter New Password.');
+                    $('#passwordnc').focus();
+                    return false;
+                } else if (passwordnc.trim() != passwordn.trim()) {
+                    alert('Please enter the same password.');
+                    $('#passwordnc').focus();
+                    return false;
                 }
+                var mobile1 = $('#mobile1').val();
+                var otp = $('#otp').val();
+                $.ajax({
+                    method: 'POST',
+                    url: DRIVER_API_URL + '/reset_password_mobile',
+                    async: true,
+                    data: {
+                        driver_mobile: countryCode + mobile1,
+                        password: passwordn,
+                        otp: otp,
+                        is_approved: 1
+                    },
+                    success: function(data, status) {
+                        console.log('Password reset response: ', data);
+                        if (typeof data === "string") {
+                            data = JSON.parse(data);
+                        }
+                        if (data.error) {
+                            alert(data.error);
+                            return;
+                        }
+                        $("#main-login").addClass("hidden");
+                        $("#reset1").addClass("hidden");
+                        $("#reset2").addClass("hidden");
+                        $("#reset3").addClass("hidden");
+                        $("#reset4").removeClass("hidden");
+                        $("#signing_heading").addClass("hidden");
+                        $("#reset_heading").addClass("hidden");
+                        $("#reset2_heading").addClass("hidden");
+                        $("#reset3_heading").addClass("hidden");
+                        $("#reset4_heading").removeClass("hidden");
+
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 'slow');
+                    },
+                    error: function(data, status) {
+                        console.log('Error occured while resetting password', data);
+                    }
+                });
             });
-
+            $("#login-main").click(function() {
+                $("#main-login").removeClass("hidden");
+                $("#reset1").addClass("hidden");
+                $("#reset2").addClass("hidden");
+                $("#reset3").addClass("hidden");
+                $("#reset4").addClass("hidden");
+                $("#reset5").addClass("hidden");
+                $("#signing_heading").removeClass("hidden");
+                $("#reset_heading").addClass("hidden");
+                $("#reset2_heading").addClass("hidden");
+                $("#reset3_heading").addClass("hidden");
+                $("#reset4_heading").addClass("hidden");
+            });
         });
-
-        $("#login-main").click(function() {
-
-            $("#main-login").removeClass("hidden");
-            $("#reset1").addClass("hidden");
-            $("#reset2").addClass("hidden");
-            $("#reset3").addClass("hidden");
-            $("#reset4").addClass("hidden");
-            $("#reset5").addClass("hidden");
-            $("#signing_heading").removeClass("hidden");
-            $("#reset_heading").addClass("hidden");
-            $("#reset2_heading").addClass("hidden");
-            $("#reset3_heading").addClass("hidden");
-            $("#reset4_heading").addClass("hidden");
-
-        });
-
-
-    });
     </script>
 </head>
 
@@ -285,9 +281,8 @@
                 <div class="col-12">
                     <div class="header__content">
                         <a href="/" class="header__logo">
-                            <object type="image/svg+xml" data="img/logo--black.svg"></object>
-                            <!-- <object type="image/svg+xml" data="img/logo--black.svg"></object> -->
-                            <object type="image/svg+xml" data="img/logo--black.svg"></object>
+                            <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
+                            <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
                         </a>
                         <nav class="header__nav">
                             <a href="affiliatelogin.html">Affiliate</a>
@@ -314,13 +309,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 left-heading" id="signing_heading">
-                    <h3>Driver Sign In</h3>
-                    Partner with Qudos to get access to rides and start building your clientele.
+                    <h3>Driver Sign In</h3> Partner with Qudos to get access to rides and start building your clientele.
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 left-heading hidden" id="reset_heading">
-                    <h3>Reset Password</h3>
-                    Enter your number and we will send you a
-                    OTP to reset your password.
+                    <h3>Reset Password</h3> Enter your number and we will send you a OTP to reset your password.
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 left-heading hidden" id="reset2_heading">
                     <div id="main-hidden" class="col-md-12">
@@ -331,8 +323,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 left-heading hidden" id="reset3_heading">
-                    <h3>Reset Password</h3>
-                    Qudos gives our drivers the tools to create long standing and frequent business relationships.
+                    <h3>Reset Password</h3> Qudos gives our drivers the tools to create long standing and frequent business relationships.
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 left-heading hidden" id="reset4_heading">
                     <h3>Reset Successfully</h3>
@@ -352,92 +343,85 @@
                                                     <input type="tel" id="mobile" title="Please fill out this field" class="" type="tel" onkeyup="numbermode()" inputmode="numeric" placeholder="800-000-0000" required />
                                                 </div>
                                                 <label>Password <a id="forget" href="#"><strong>Forgot it?</strong></label></a>
-                                                <div class="row-input">
-                                                    <input id="password" value="" title="Please fill out this field" name="password" class="password" name="password" type="password" placeholder="Enter Password" />
-                                                </div>
-                                                <button class="submit" type="button" onclick="submitContactForm()">Login</button>
-                                                <a href="driversignup.html"><button class="signup_btn" type="button">Signup</button></a>
+                                                    <div class="row-input">
+                                                        <input id="password" value="" title="Please fill out this field" name="password" class="password" name="password" type="password" placeholder="Enter Password" />
+                                                    </div>
+                                                    <button class="submit" type="button" onclick="submitContactForm()">Login</button>
+                                                    <a href="driversignup.html">
+                                                        <button class="signup_btn" type="button">Signup</button>
+                                                    </a>
                                             </form>
                                             <script>
                                                 $(function() {
-                                       var countryCode = '+'+$("#mobile").intlTelInput("getSelectedCountryData").dialCode+'-';
-                                       
-                                       $("#mobile").intlTelInput({
-                                        nationalMode: true,
-                                        preferredCountries: ["us", "ph"]
-                                       });
-                                       $("#mobile1").intlTelInput({
-                                        nationalMode: true,
-                                        preferredCountries: ["us", "ph"]
-                                       });
-                                       
-                                       });
-                                       function numbermode(){
-                                       $('#mobile').val($('#mobile').val().replace(/\D/g, ''));
-                                       /*if(($('#mobile').val().substr(0,1)) == "+"){
-                                       $('#mobile').val('+'+$('#mobile').val().substr(1).replace(/\D/g, ''))
-                                       }else{
-                                       $('#mobile').val($('#mobile').val().replace(/\D/g, ''));
-                                       }*/
-                                       }
-                                       function submitContactForm(){
-                                       var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-                                       var mobile = $('#mobile').val();
-                                       var password = $('#password').val();
-                                       var countryCode = '+'+$("#mobile").intlTelInput("getSelectedCountryData").dialCode+'-';
-                                       
-                                       var reg = /^[1-9]{1}[0-9]{5,9}$/;
-                                       
-                                       
-                                       if(mobile.trim() == '' ){
-                                          alert('Please enter your Mobile.');
-                                          $('#mobile').focus();
-                                          return false;
-                                       }else if(!reg.test(mobile)){
-                                          alert('Please enter valid Mobile Number.');
-                                          $('#mobile1').focus();
-                                          return false;
-                                       }else if(password.trim() == '' ){
-                                          alert('Please enter your Password.');
-                                          $('#password').focus();
-                                          return false;
-                                       }
-                                       
-                                       $.ajax({
-                                          method:'POST',
-                                          url: DRIVER_API_URL+'/mobile_login',
-                                          async:true,
-                                          data:{driver_mobile:countryCode+mobile,password},
-                                          success: function(data,status){
-                                              console.log('data:',data);
-                                              if(typeof data==="string") {
-                                                  data = JSON.parse(data);
-                                              }
-                                              if(data.error){
-                                                  alert(data.error);
-                                                  return;
-                                              }
-                                              if(data.login[0].web_access_token){
-                                                  console.log('datafff:',data.login[0].is_approved)
-                                                  window.location.href =  DRIVER_RIDER_PORTAL_URL+'/#/driver_login?web_access_token='+data.login[0].web_access_token ;
-                                              }else{
-                                                  alert('Mobile number and password does not match!');
-                                                  return;
-                                              }
-                                          },
-                                          error: function(data,status){
-                                              console.log('Error while login in :',data);
-                                          }
-                                       });
-                                       }
-                                    </script>
+                                                    var countryCode = '+' + $("#mobile").intlTelInput("getSelectedCountryData").dialCode + '-';
+                                                    $("#mobile").intlTelInput({
+                                                        nationalMode: true,
+                                                        preferredCountries: ["us", "ph"]
+                                                    });
+                                                    $("#mobile1").intlTelInput({
+                                                        nationalMode: true,
+                                                        preferredCountries: ["us", "ph"]
+                                                    });
+                                                });
+
+                                                function numbermode() {
+                                                    $('#mobile').val($('#mobile').val().replace(/\D/g, ''));
+                                                }
+
+                                                function submitContactForm() {
+                                                    var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+                                                    var mobile = $('#mobile').val();
+                                                    var password = $('#password').val();
+                                                    var countryCode = '+' + $("#mobile").intlTelInput("getSelectedCountryData").dialCode + '-';
+                                                    var reg = /^[1-9]{1}[0-9]{5,9}$/;
+                                                    if (mobile.trim() == '') {
+                                                        alert('Please enter your Mobile.');
+                                                        $('#mobile').focus();
+                                                        return false;
+                                                    } else if (!reg.test(mobile)) {
+                                                        alert('Please enter valid Mobile Number.');
+                                                        $('#mobile1').focus();
+                                                        return false;
+                                                    } else if (password.trim() == '') {
+                                                        alert('Please enter your Password.');
+                                                        $('#password').focus();
+                                                        return false;
+                                                    }
+                                                    $.ajax({
+                                                        method: 'POST',
+                                                        url: DRIVER_API_URL + '/mobile_login',
+                                                        async: true,
+                                                        data: {
+                                                            driver_mobile: countryCode + mobile,
+                                                            password
+                                                        },
+                                                        success: function(data, status) {
+                                                            console.log('data:', data);
+                                                            if (typeof data === "string") {
+                                                                data = JSON.parse(data);
+                                                            }
+                                                            if (data.error) {
+                                                                alert(data.error);
+                                                                return;
+                                                            }
+                                                            if (data.login[0].web_access_token) {
+                                                                console.log('datafff:', data.login[0].is_approved)
+                                                                window.location.href = DRIVER_RIDER_PORTAL_URL + '/#/driver_login?web_access_token=' + data.login[0].web_access_token;
+                                                            } else {
+                                                                alert('Mobile number and password does not match!');
+                                                                return;
+                                                            }
+                                                        },
+                                                        error: function(data, status) {
+                                                            console.log('Error while login in :', data);
+                                                        }
+                                                    });
+                                                }
+                                            </script>
                                             <div class="row-forget-pass">
                                                 <div class="left-align">
                                                     <a href="riderlogin.html">Looking to Ride?</a>
                                                 </div>
-                                                <!-- <div class="right-align">
-                                          New to this?<a href="driversignup.html"> <strong>Signup</strong></a>
-                                          </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -445,11 +429,6 @@
                                 <!--End inner Row-->
                                 <!--Start Inner Row1-->
                                 <div id="reset1" class="row hidden" style="min-height: 220px;    margin-top: 0px;">
-                                    <!-- <div class="col-md-12">
-                                 <h3>Reset Password</h3>
-                                 Enter your number and we will send you a
-                                 OTP to reset your password.
-                              </div> -->
                                     <div class="col-md-12">
                                         <div class="login-form">
                                             <form name="login">
@@ -465,17 +444,10 @@
                                 <!--Start Inner Row1-->
                                 <!--Start Inner Row2-->
                                 <div id="reset2" class="row hidden">
-                                    <!--        <div id="main-hidden" class="col-md-12">
-                                 <h3>OTP Confirmation</h3>
-                              </div>
-                              <div id="main-hidden1" class="col-md-12">
-                                 Qudos builds an environment of satisfaction and comfortability through each rider and driver interaction.
-                              </div> -->
                                     <div class="col-md-12">
                                         <div class="login-form">
                                             <!-- <br> -->
-                                            <p>Confirm your mobile number to reset
-                                                your password
+                                            <p>Confirm your mobile number to reset your password
                                             </p>
                                             <form name="login">
                                                 <label>Enter OTP sent to your Mobile number</label>
@@ -532,21 +504,22 @@
             </div>
         </div>
     </section>
-    <div class="bg-wrap" include-html="../../__assets/includes/footer/footer-black.html"></div>
-    <!--<script src="js/jquery-3.2.1.slim.min.js"></script>-->
-    <script src="logins/js/owl.carousel.min.js"></script>
-    <script src="logins/js/main.js"></script>
-    <script src="../../__assets/js/main.js"></script>
-
-    
+    <div class="service-wrap">
+        <div include-html="core__components/footer/footer-black.html"></div>
+    </div>
+    <script src="core__assets/js/vendors/owl/owl.carousel.min.js"></script>
+    <script src="core__assets/js/core.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149373672-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'UA-149373672-1');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-149373672-1');
     </script>
 </body>
 

@@ -4,688 +4,464 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--CSS-->
-    <!--  <link rel="stylesheet" href="logins/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="logins/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="logins/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="logins/css/fontello.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/css/intlTelInput.css">
-    <link rel="stylesheet" href="logins/css/main.css"> -->
+    <meta name="description" content="Join Qudos's affiliate program to build your business and earn rewards for new rider referrals.">
+    <meta name="keywords" content="">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../__assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../__assets/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="../../__assets/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/bootstrap/bootstrap.min.css">
     <!-- Animate on Scroll -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Owl Carousel -->
-    <link rel="stylesheet" href="../../__assets/css/owl.carousel.min.css">
-    <!-- Fontello -->
-    <link rel="stylesheet" href="../../__assets/css/fontello.css">
-    <link rel="stylesheet" href="../../__assets/fontawesome/css/all.min.css">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="../../__assets/img/favIcon.png">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../../__assets/css/styles.min.css">
-    <link rel="stylesheet" href="logins/css/main.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/owl/owl.carousel.min.css">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans:400,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="logins/img/favIcon.png">
-    <meta name="description" content="Join Qudos's affiliate program to build your business and earn rewards for new rider referrals.">
-    <meta name="keywords" content="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans:400,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="core__assets/css/vendors/fontello/fontello.css">
+    <link rel="stylesheet" href="core__assets/fonts/fontawesome/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="core__assets/img/logins/favIcon.png">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="core__assets/css/vendors/legacy/styles.min.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/legacy/main.css">
     <title>Qudos | Affiliates Sign Up</title>
     <style>
         #fourth-step.submit.disabled {
-         opacity: 0.6;
-         background: grey;
-         cursor: not-allowed;
-         }
-         .countrycodeOverlay {
-         width: 14%;
-         height: 76%;
-         position: absolute;
-         z-index: 9999;
-         top: 19%;
-         }
-      </style>
+            opacity: 0.6;
+            background: grey;
+            cursor: not-allowed;
+        }
+        .countrycodeOverlay {
+            width: 14%;
+            height: 76%;
+            position: absolute;
+            z-index: 9999;
+            top: 19%;
+        }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/utils.js"></script>
-    <script type="text/javascript">
-    var countryCode = '+1-';
-    //var countryCode = '+'+$("#mobile").intlTelInput("getSelectedCountryData").dialCode+'-';
-    function changeSignupTitle(title) {
-        $("#signup-title").text(title);
-    }
 
-    function trimZip() {
-        var zipMaxLength = (countryToSet == "PH") ? 4 : 5;
-
-        var desired = $('#zip').val().replace(/[^\w\s]/gi, '').replace(/\D/g, '');
-        $('#zip').val(desired.slice(0, zipMaxLength));
-    }
-
-
-    function addRemoveClass(selector, classname, addClass) {
-        addClass ? $(selector).addClass(classname) : $(selector).removeClass(classname);
-        if (selector == "#signup-4") {
-            document.querySelector(selector).classList.contains('hidden') == true ? changeSignupTitle('Affiliate Sign Up') : changeSignupTitle('OTP Sent');
+    
+     <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Qudos",
+        "operatingSystem": "iOS",
+        "applicationCategory": "Travel and Local",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.0",
+            "ratingCount": "14"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "USD"
         }
     }
+    </script>
+    <script type="text/javascript">
+        var countryCode = '+1-';
 
-    function getStates(c_id) {
-        $.post(VENDOR_API_URL + '/states', { country_id: c_id }, function(data, status) {
-            if (typeof data == 'string')
-                data = JSON.parse(data)
-            var states = data.cities;
-            var options = "";
-            states.forEach(function(state) {
-                options += "<option value='" + state.state_id + "'>" + state.state_name + "</option>"
-            });
-            $("#select-state").html(options);
-        });
+        function changeSignupTitle(title) {
+            $("#signup-title").text(title);
+        }
 
-    }
+        function trimZip() {
+            var zipMaxLength = (countryToSet == "PH") ? 4 : 5;
 
+            var desired = $('#zip').val().replace(/[^\w\s]/gi, '').replace(/\D/g, '');
+            $('#zip').val(desired.slice(0, zipMaxLength));
+        }
 
-
-    function getSubTypes() {
-
-        $.ajax({
-            method: 'GET',
-            url: VENDOR_API_URL + '/subtypes',
-            data: {},
-            success: function(data, status) {
-                if (typeof data == 'string') {
-                    data = JSON.parse(data)
-                }
-
-
-
-                var subtypes = data.subtype;
-                var options = "";
-                subtypes.forEach(function(subtype) {
-                    options += "<option value='" + subtype.subtype_id + "'" + (subtype.subtype_id == 35 ? ' selected' : '') + ">" + subtype.subtype_name + "</option>"
-                });
-                $("#select-subtype").html(options);
-
-
+        function addRemoveClass(selector, classname, addClass) {
+            addClass ? $(selector).addClass(classname) : $(selector).removeClass(classname);
+            if (selector == "#signup-4") {
+                document.querySelector(selector).classList.contains('hidden') == true ? changeSignupTitle('Affiliate Sign Up') : changeSignupTitle('OTP Sent');
             }
+        }
 
-        });
-
-    }
-
-
-
-    var countries;
-
-    function getCountries() {
-        $.ajax({
-            url: CORPORATE_PORTAL_URL + '/countryList',
-            success: function(data, status) {
-
+        function getStates(c_id) {
+            $.post(VENDOR_API_URL + '/states', {
+                country_id: c_id
+            }, function(data, status) {
                 if (typeof data == 'string')
                     data = JSON.parse(data)
-
-                countries = data.countries;
-                console.log(countries);
+                var states = data.cities;
                 var options = "";
-                var disabled;
-                countries.forEach(function(country) {
-                    options += "<option value='" + country.country_id + "' data-code='" + country.country_code + "'  >" + country.country_name + "</option>"
+                states.forEach(function(state) {
+                    options += "<option value='" + state.state_id + "'>" + state.state_name + "</option>"
                 });
-                $("#country").html(options);
-            },
-            error: function(data, status) {
-                console.log('Error occured while retriving states');
-            }
-        });
-    }
+                $("#select-state").html(options);
+            });
+        }
 
-    var countryToSet = 'US';
-
-
-    $(function() {
-
-
-        /*  $("#mobile").intlTelInput({
-            nationalMode: true,
-            preferredCountries: ["us", "ph"]
-          });
-        */
-        getStates(1);
-        getCountries();
-        getSubTypes();
-
-
-        $("#country").on('change', function() {
-            console.log($(this).val(), ' selected');
-
-            getStates($(this).val());
-            if ($(this).val() == '2') {
-                countryToSet = 'PH';
-                $('#stateLabel').text('Select State/City');
-            } else if ($(this).val() == '1') {
-                countryToSet = 'US';
-                $('#stateLabel').text('Select State');
-            } else {
-                countryToSet = $('#country option:selected').data('code');
-                $('#stateLabel').text('Select State');
-            }
-
-            $("#mobile").intlTelInput("setCountry", countryToSet);
-        });
-
-
-
-
-
-        $("#first-step").click(function() {
-
-            if ($("#select-state option:selected").text()) {
-
-                $("#signup-1").addClass("hidden");
-                $("#signup-2").removeClass("hidden");
-                $("#li-step0").removeClass("active");
-                $("#li-step1").addClass("active");
-                $("#ny").removeClass("hidden");
-                $("#no-ny").addClass("hidden");
-
-                $("#0-step").click(function() {
-
-                    $("#signup-1").removeClass("hidden");
-                    $("#signup-2").addClass("hidden");
-                    $("#signup-3").addClass("hidden");
-                    addRemoveClass('#signup-4', 'hidden', true)
-                    $("#li-step0").addClass("active");
-                    $("#li-step1").removeClass("active");
-                    $("#li-step2").removeClass("active");
-                    $("#li-step3").removeClass("active");
-
-                    $("#1-step").click(function() {
-                        $("#signup-1").addClass("hidden");
-                        $("#signup-2").removeClass("hidden");
-                        $("#li-step0").removeClass("active");
-                        $("#li-step1").addClass("active");
-                    });
-
-                });
-
-            } else {
-                alert('Please Select a state');
-                return false;
-            }
-
-            // else
-            // {
-            //    $("#signup-1").addClass("hidden");
-            //  $("#signup-6").removeClass("hidden");
-            //  $("#no-ny").removeClass("hidden");
-            //  $("#ny").addClass("hidden");
-            //
-            //
-            //  $("#4-step").click(function(){
-            //
-            //   $("#signup-1").removeClass("hidden");
-            //   $("#signup-6").addClass("hidden");
-            //
-            //   $("#li-step4").addClass("active");
-            //   $("#li-step5").removeClass("active");
-            //
-            //    $("#5-step").click(function() {
-            //      $("#signup-1").addClass("hidden");
-            //      $("#signup-6").removeClass("hidden");
-            //      $("#li-step4").removeClass("active");
-            //      $("#li-step5").addClass("active");
-            //    });
-            //
-            //  });
-            // }
-
-        });
-
-
-        $("#second-step").click(function() {
-
-
-            var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-            var zipMaxLength = (countryToSet == "PH") ? 4 : 5;
-            var fname = $('#fname').val();
-            var lname = $('#lname').val();
-            var mobile = $('#mobile').val();
-            var email = $('#email').val();
-            var password = $('#password').val();
-            var passwordc = $('#passwordc').val();
-            var zip = $('#zip').val();
-            var country_id = $("#country option:selected").val();
-            var state_id = $("#select-state option:selected").val();
-            var how_hear_us = $("[name='hear']:checked").val();
-            var refferal = $('#refferal').val();
-
-
-            if (fname.trim() == '') {
-                alert('Please enter your First Name.');
-                $('#fname').focus();
-                return false;
-            } else if (lname.trim() == '') {
-                alert('Please enter your Last Name.');
-                $('#lname').focus();
-                return false;
-            } else if (mobile.trim() == '') {
-                alert('Please enter your Mobile.');
-                $('#mobile').focus();
-                return false;
-            } else if (!/^[1-9]{1}[0-9]{5,9}$/.test(mobile)) {
-                alert('Please enter valid Mobile Number');
-                $('#mobile').focus();
-                return false;
-            } else if (email.trim() == '') {
-                alert('Please enter your email.');
-                $('#email').focus();
-                return false;
-            } else if (email.trim() != '' && !reg.test(email)) {
-                alert('Please enter valid email.');
-                $('#email').focus();
-                return false;
-            } else if (password.trim() == '') {
-                alert('Please enter the password');
-                $('#password').focus();
-                return false;
-            } else if (password.trim().length < 6) {
-                alert('Please enter atleast 6 characters');
-                $('#password').focus();
-                return false;
-            } else if (passwordc.trim() == '') {
-                alert('Please enter confirm password');
-                $('#passwordc').focus();
-                return false;
-            } else if (password !== passwordc) {
-                alert('Password and confirm password doesn\'t match');
-                $('#password').focus();
-                return false;
-            } else if (zip.trim() == '') {
-                alert('Please Choose Your Zip Code.');
-                $('#zip').focus();
-                return false;
-            } else if (zip.length < zipMaxLength) {
-                alert('Please Enter valid zip code.');
-                $('#zip').focus();
-                return false;
-            }
-            /* else if(refferal.trim() == '' ){
-                 alert('Please Choose Your Zip Code.');
-                 $('#zip').focus();
-                 return false;
-             }*/
-
-            // else if(!how_hear_us || how_hear_us.trim()=='') {
-            //     alert('Please select How did you hear about Qudos?')
-            //     return false;
-            // }
-
+        function getSubTypes() {
             $.ajax({
-                method: 'POST',
-                url: VENDOR_API_URL + '/otp/send',
-                data: {
-                    email,
-                    mobile: countryCode + mobile,
-                },
+                method: 'GET',
+                url: VENDOR_API_URL + '/subtypes',
+                data: {},
                 success: function(data, status) {
-                    console.log('OTP send Successfully:', data);
                     if (typeof data == 'string') {
-                        data = JSON.parse(data);
+                        data = JSON.parse(data)
                     }
-                    if (data.error || data.flag == 0) {
-                        alert(data.error || data.message);
-                        return false;
-                    } else {
-                        $("#signup-1").addClass("hidden");
+                    var subtypes = data.subtype;
+                    var options = "";
+                    subtypes.forEach(function(subtype) {
+                        options += "<option value='" + subtype.subtype_id + "'" + (subtype.subtype_id == 35 ? ' selected' : '') + ">" + subtype.subtype_name + "</option>"
+                    });
+                    $("#select-subtype").html(options);
+                }
+            });
+        }
+        var countries;
+
+        function getCountries() {
+            $.ajax({
+                url: CORPORATE_PORTAL_URL + '/countryList',
+                success: function(data, status) {
+
+                    if (typeof data == 'string')
+                        data = JSON.parse(data)
+
+                    countries = data.countries;
+                    console.log(countries);
+                    var options = "";
+                    var disabled;
+                    countries.forEach(function(country) {
+                        options += "<option value='" + country.country_id + "' data-code='" + country.country_code + "'  >" + country.country_name + "</option>"
+                    });
+                    $("#country").html(options);
+                },
+                error: function(data, status) {
+                    console.log('Error occured while retriving states');
+                }
+            });
+        }
+        var countryToSet = 'US';
+        $(function() {
+            getStates(1);
+            getCountries();
+            getSubTypes();
+            $("#country").on('change', function() {
+                console.log($(this).val(), ' selected');
+
+                getStates($(this).val());
+                if ($(this).val() == '2') {
+                    countryToSet = 'PH';
+                    $('#stateLabel').text('Select State/City');
+                } else if ($(this).val() == '1') {
+                    countryToSet = 'US';
+                    $('#stateLabel').text('Select State');
+                } else {
+                    countryToSet = $('#country option:selected').data('code');
+                    $('#stateLabel').text('Select State');
+                }
+                $("#mobile").intlTelInput("setCountry", countryToSet);
+            });
+            $("#first-step").click(function() {
+                if ($("#select-state option:selected").text()) {
+                    $("#signup-1").addClass("hidden");
+                    $("#signup-2").removeClass("hidden");
+                    $("#li-step0").removeClass("active");
+                    $("#li-step1").addClass("active");
+                    $("#ny").removeClass("hidden");
+                    $("#no-ny").addClass("hidden");
+                    $("#0-step").click(function() {
+                        $("#signup-1").removeClass("hidden");
                         $("#signup-2").addClass("hidden");
-                        $("#signup-3").removeClass("hidden");
-
-                        $("#li-step0").removeClass("active");
+                        $("#signup-3").addClass("hidden");
+                        addRemoveClass('#signup-4', 'hidden', true)
+                        $("#li-step0").addClass("active");
                         $("#li-step1").removeClass("active");
-                        $("#li-step2").addClass("active");
-
+                        $("#li-step2").removeClass("active");
+                        $("#li-step3").removeClass("active");
                         $("#1-step").click(function() {
-
                             $("#signup-1").addClass("hidden");
                             $("#signup-2").removeClass("hidden");
-                            $("#signup-3").addClass("hidden");
-                            addRemoveClass('#signup-4', 'hidden', true)
-                            $("#li-step3").removeClass("active");
+                            $("#li-step0").removeClass("active");
                             $("#li-step1").addClass("active");
                         });
+                    });
+                } else {
+                    alert('Please Select a state');
+                    return false;
+                }
+            });
+            $("#second-step").click(function() {
+                var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+                var zipMaxLength = (countryToSet == "PH") ? 4 : 5;
+                var fname = $('#fname').val();
+                var lname = $('#lname').val();
+                var mobile = $('#mobile').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var passwordc = $('#passwordc').val();
+                var zip = $('#zip').val();
+                var country_id = $("#country option:selected").val();
+                var state_id = $("#select-state option:selected").val();
+                var how_hear_us = $("[name='hear']:checked").val();
+                var refferal = $('#refferal').val();
 
-                        $("#signup-1").addClass("hidden");
-                        $("#signup-2").addClass("hidden");
-                        //$("#signup-3").addClass("hidden");
-                        addRemoveClass('#signup-4', 'hidden', false)
+                if (fname.trim() == '') {
+                    alert('Please enter your First Name.');
+                    $('#fname').focus();
+                    return false;
+                } else if (lname.trim() == '') {
+                    alert('Please enter your Last Name.');
+                    $('#lname').focus();
+                    return false;
+                } else if (mobile.trim() == '') {
+                    alert('Please enter your Mobile.');
+                    $('#mobile').focus();
+                    return false;
+                } else if (!/^[1-9]{1}[0-9]{5,9}$/.test(mobile)) {
+                    alert('Please enter valid Mobile Number');
+                    $('#mobile').focus();
+                    return false;
+                } else if (email.trim() == '') {
+                    alert('Please enter your email.');
+                    $('#email').focus();
+                    return false;
+                } else if (email.trim() != '' && !reg.test(email)) {
+                    alert('Please enter valid email.');
+                    $('#email').focus();
+                    return false;
+                } else if (password.trim() == '') {
+                    alert('Please enter the password');
+                    $('#password').focus();
+                    return false;
+                } else if (password.trim().length < 6) {
+                    alert('Please enter atleast 6 characters');
+                    $('#password').focus();
+                    return false;
+                } else if (passwordc.trim() == '') {
+                    alert('Please enter confirm password');
+                    $('#passwordc').focus();
+                    return false;
+                } else if (password !== passwordc) {
+                    alert('Password and confirm password doesn\'t match');
+                    $('#password').focus();
+                    return false;
+                } else if (zip.trim() == '') {
+                    alert('Please Choose Your Zip Code.');
+                    $('#zip').focus();
+                    return false;
+                } else if (zip.length < zipMaxLength) {
+                    alert('Please Enter valid zip code.');
+                    $('#zip').focus();
+                    return false;
+                }
+                $.ajax({
+                    method: 'POST',
+                    url: VENDOR_API_URL + '/otp/send',
+                    data: {
+                        email,
+                        mobile: countryCode + mobile,
+                    },
+                    success: function(data, status) {
+                        console.log('OTP send Successfully:', data);
+                        if (typeof data == 'string') {
+                            data = JSON.parse(data);
+                        }
+                        if (data.error || data.flag == 0) {
+                            alert(data.error || data.message);
+                            return false;
+                        } else {
+                            $("#signup-1").addClass("hidden");
+                            $("#signup-2").addClass("hidden");
+                            $("#signup-3").removeClass("hidden");
 
-                        $("#li-step0").removeClass("active");
-                        $("#li-step1").removeClass("active");
-                        //$("#li-step2").removeClass("active");
-                        $("#li-step3").addClass("active");
+                            $("#li-step0").removeClass("active");
+                            $("#li-step1").removeClass("active");
+                            $("#li-step2").addClass("active");
 
-                        $("#3-step").click(function() {
+                            $("#1-step").click(function() {
+
+                                $("#signup-1").addClass("hidden");
+                                $("#signup-2").removeClass("hidden");
+                                $("#signup-3").addClass("hidden");
+                                addRemoveClass('#signup-4', 'hidden', true)
+                                $("#li-step3").removeClass("active");
+                                $("#li-step1").addClass("active");
+                            });
 
                             $("#signup-1").addClass("hidden");
                             $("#signup-2").addClass("hidden");
-                            //$("#signup-3").removeClass("hidden");
+                            //$("#signup-3").addClass("hidden");
                             addRemoveClass('#signup-4', 'hidden', false)
 
-                            //$("#li-step2").removeClass("active");
+                            $("#li-step0").removeClass("active");
                             $("#li-step1").removeClass("active");
+                            //$("#li-step2").removeClass("active");
                             $("#li-step3").addClass("active");
 
-                        });
-                        $('html, body').animate({ scrollTop: 0 }, 'slow');
+                            $("#3-step").click(function() {
+
+                                $("#signup-1").addClass("hidden");
+                                $("#signup-2").addClass("hidden");
+                                //$("#signup-3").removeClass("hidden");
+                                addRemoveClass('#signup-4', 'hidden', false)
+
+                                //$("#li-step2").removeClass("active");
+                                $("#li-step1").removeClass("active");
+                                $("#li-step3").addClass("active");
+
+                            });
+                            $('html, body').animate({
+                                scrollTop: 0
+                            }, 'slow');
+                            alert('An OTP has been sent on your mobile number');
+                        }
+                    },
+                    error: function(data, status) {
+                        console.log('Error while sending OTP: ', data);
+                    }
+                });
+            });
+            $("#resendOtp").click(function() {
+                var mobile = $('#mobile').val();
+                var email = $('#email').val();
+                $.ajax({
+                    method: 'POST',
+                    url: VENDOR_API_URL + '/otp/resend',
+                    data: {
+                        email,
+                        mobile: countryCode + mobile,
+                    },
+                    success: function(data, status) {
+                        console.log('OTP resend Successfully:', data);
+                        if (typeof data == 'string') {
+                            data = JSON.parse(data);
+                        }
+                        if (data.error) {
+                            alert(data.error);
+                            return false;
+                        }
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 'slow');
                         alert('An OTP has been sent on your mobile number');
-                        /*setTimeout(function(){
-                          
-                        },1000);*/
+                    },
+                    error: function(data, status) {
+                        console.log('Error while resending OTP: ', data);
                     }
-                },
-                error: function(data, status) {
-                    console.log('Error while sending OTP: ', data);
-                }
+                });
             });
-
-
-        });
-
-        $("#resendOtp").click(function() {
-            var mobile = $('#mobile').val();
-            var email = $('#email').val();
-            $.ajax({
-                method: 'POST',
-                url: VENDOR_API_URL + '/otp/resend',
-                data: {
-                    email,
-                    mobile: countryCode + mobile,
-                },
-                success: function(data, status) {
-                    console.log('OTP resend Successfully:', data);
-                    if (typeof data == 'string') {
-                        data = JSON.parse(data);
-                    }
-                    if (data.error) {
-                        alert(data.error);
-                        return false;
-                    }
-                    $('html, body').animate({ scrollTop: 0 }, 'slow');
-                    alert('An OTP has been sent on your mobile number');
-                },
-                error: function(data, status) {
-                    console.log('Error while resending OTP: ', data);
-                }
-            });
-        });
-
-        $("#changeMobile").click(function() {
-            $("#signup-2").removeClass("hidden");
-            addRemoveClass('#signup-4', 'hidden', true)
-            $("#mobile").focus();
-            $("#li-step1").addClass("active");
-            $("#li-step3").removeClass("active");
-        })
-
-        /*$("#third-step").click(function() {
-         
-         
-         
-             if ( document.getElementById('accept-term').checked === false ) {
-                 alert('Please Check out agree our term and condition.');
-         
-                 return false;
-             }
-         
-            $("#signup-1").addClass("hidden");
-            $("#signup-2").addClass("hidden");
-          $("#signup-3").addClass("hidden");
-          $("#signup-4").removeClass("hidden");
-         
-          $("#li-step0").removeClass("active");
-          $("#li-step1").removeClass("active");
-          $("#li-step2").removeClass("active");
-          $("#li-step3").addClass("active");
-         
-              $("#2-step").click(function(){
-         
-                 $("#signup-1").addClass("hidden");
-                 $("#signup-2").addClass("hidden");
-                 $("#signup-3").removeClass("hidden");
-                addRemoveClass('#signup-4','hidden',true)
-         
-                 $("#li-step2").addClass("active");
-                 $("#li-step1").removeClass("active");
-                 $("#li-step3").removeClass("active");
-         
-                  $("#3-step").click(function() {
-                    $("#signup-1").addClass("hidden");
-                      $("#signup-2").addClass("hidden");
-                    $("#signup-3").addClass("hidden");
-                    $("#signup-4").removeClass("hidden");
-         
-                    $("#li-step0").removeClass("active");
-                    $("#li-step1").removeClass("active");
-                    $("#li-step2").removeClass("active");
-                    $("#li-step3").addClass("active");
-         
-         
-                  });
-         
-              });
-         
-           });
-         */
-        $("#fourth-step").click(function() {
-
-            var first_name = $('#fname').val();
-            var last_name = $('#lname').val();
-            var driver_mobile = countryCode + $('#mobile').val();
-            var email = $('#email').val();
-            var password = $('#password').val();
-            var zipcode = $('#zip').val();
-            var country_id = $("#country option:selected").val();
-            var state_id = $("#select-state option:selected").val();
-            var subtype_id = $("#select-subtype option:selected").val();
-            // var car_type = $("#vehicle option:selected").val();
-            // var car_name = $("#vehicle option:selected").text();
-            // var how_hear_us = $("[name='hear']:checked").val();
-            // var is_part_time = +($("[name='work']:checked").val());
-            //  var uber_rating = $("[name='uber']:checked").val() == '1' ? $("[name='uber_rating']:checked").val() : "0.0";
-            //  var lyft_rating = $("[name='lyft']:checked").val() == '1' ? $("[name='lyft_rating']:checked").val() : "0.0";
-            //  var refferal = $('#refferal').val();
-
-
-            var otp = $('#otp').val();
-
-            if (otp.trim() == '') {
-                alert('Please Enter OTP');
-                otp.focus();
-                return false;
-            } else if (!/^[0-9]{4}$/.test(otp)) {
-                alert('Enter OTP sent to your Mobile.')
-                otp.focus();
-                return false;
-            }
-            that = this;
-            $(that).attr('disabled', true).addClass('disabled');;
-            $.ajax({
-                method: 'POST',
-                url: VENDOR_API_URL + '/otp/verify',
-                data: {
-                    mobile: driver_mobile,
-                    otp
-                },
-                success: function(data, status) {
-                    if (typeof data == 'string') {
-                        data = JSON.parse(data);
-                    }
-                    if (data.error || data.flag == 0) {
-                        $(that).attr('disabled', false).removeClass('disabled');
-                        alert(data.error || data.message);
-                        return false;
-                    } else {
-                        $('html, body').animate({ scrollTop: 0 }, 'slow');
-                        $.ajax({
-                            method: 'POST',
-                            url: VENDOR_API_URL + '/register',
-                            data: {
-                                first_name,
-                                last_name,
-                                mobile: driver_mobile,
-                                email,
-                                password,
-                                zipcode,
-                                country_id,
-                                state_id,
-                                subtype_id,
-                            },
-                            success: function(data, status) {
-                                console.log('data after register:', data);
-                                if (typeof data == 'string') {
-                                    data = JSON.parse(data);
-                                }
-                                if (data.error) {
-                                    $(that).attr('disabled', false).removeClass('disabled');
-                                    alert(data.error);
-                                    return false;
-                                } else {
-                                    $("#signup-1").addClass("hidden");
-                                    $("#signup-2").addClass("hidden");
-                                    $("#signup-3").addClass("hidden");
-                                    addRemoveClass('#signup-4', 'hidden', true)
-                                    $("#signup-5").removeClass("hidden");
-                                    $("#main-hidden").addClass("hidden");
-                                    $("#main-hidden1").addClass("hidden");
-                                }
-                                $('html, body').animate({ scrollTop: 0 }, 'slow');
-                            },
-                            error: function(data, status) {
-                                $('html, body').animate({ scrollTop: 0 }, 'slow');
-                                $(that).attr('disabled', false).removeClass('disabled');
-                                console.log('Affiliate registration failed!', data)
-                            }
-                        });
-                    }
-                },
-                error: function(data, status) {
-                    $(that).attr('disabled', false).removeClass('disabled');
-                    console.log('OTP verification failed!', data)
-                }
+            $("#changeMobile").click(function() {
+                $("#signup-2").removeClass("hidden");
+                addRemoveClass('#signup-4', 'hidden', true)
+                $("#mobile").focus();
+                $("#li-step1").addClass("active");
+                $("#li-step3").removeClass("active");
             })
-
+            $("#fourth-step").click(function() {
+                var first_name = $('#fname').val();
+                var last_name = $('#lname').val();
+                var driver_mobile = countryCode + $('#mobile').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var zipcode = $('#zip').val();
+                var country_id = $("#country option:selected").val();
+                var state_id = $("#select-state option:selected").val();
+                var subtype_id = $("#select-subtype option:selected").val();
+                var otp = $('#otp').val();
+                if (otp.trim() == '') {
+                    alert('Please Enter OTP');
+                    otp.focus();
+                    return false;
+                } else if (!/^[0-9]{4}$/.test(otp)) {
+                    alert('Enter OTP sent to your Mobile.')
+                    otp.focus();
+                    return false;
+                }
+                that = this;
+                $(that).attr('disabled', true).addClass('disabled');;
+                $.ajax({
+                    method: 'POST',
+                    url: VENDOR_API_URL + '/otp/verify',
+                    data: {
+                        mobile: driver_mobile,
+                        otp
+                    },
+                    success: function(data, status) {
+                        if (typeof data == 'string') {
+                            data = JSON.parse(data);
+                        }
+                        if (data.error || data.flag == 0) {
+                            $(that).attr('disabled', false).removeClass('disabled');
+                            alert(data.error || data.message);
+                            return false;
+                        } else {
+                            $('html, body').animate({
+                                scrollTop: 0
+                            }, 'slow');
+                            $.ajax({
+                                method: 'POST',
+                                url: VENDOR_API_URL + '/register',
+                                data: {
+                                    first_name,
+                                    last_name,
+                                    mobile: driver_mobile,
+                                        email,
+                                        password,
+                                        zipcode,
+                                        country_id,
+                                        state_id,
+                                        subtype_id,
+                                },
+                                success: function(data, status) {
+                                    console.log('data after register:', data);
+                                    if (typeof data == 'string') {
+                                        data = JSON.parse(data);
+                                    }
+                                    if (data.error) {
+                                        $(that).attr('disabled', false).removeClass('disabled');
+                                        alert(data.error);
+                                        return false;
+                                    } else {
+                                        $("#signup-1").addClass("hidden");
+                                        $("#signup-2").addClass("hidden");
+                                        $("#signup-3").addClass("hidden");
+                                        addRemoveClass('#signup-4', 'hidden', true)
+                                        $("#signup-5").removeClass("hidden");
+                                        $("#main-hidden").addClass("hidden");
+                                        $("#main-hidden1").addClass("hidden");
+                                    }
+                                    $('html, body').animate({
+                                        scrollTop: 0
+                                    }, 'slow');
+                                },
+                                error: function(data, status) {
+                                    $('html, body').animate({
+                                        scrollTop: 0
+                                    }, 'slow');
+                                    $(that).attr('disabled', false).removeClass('disabled');
+                                    console.log('Affiliate registration failed!', data)
+                                }
+                            });
+                        }
+                    },
+                    error: function(data, status) {
+                        $(that).attr('disabled', false).removeClass('disabled');
+                        console.log('OTP verification failed!', data)
+                    }
+                })
+            });
+            $("#six-step").click(function() {
+                $("#signup-1").addClass("hidden");
+                $("#signup-2").addClass("hidden");
+                $("#signup-3").addClass("hidden");
+                $("#signup-4").addClass("hidden");
+                $("#signup-5").addClass("hidden");
+                $("#signup-6").addClass("hidden");
+                $("#signup-7").addClass("hidden");
+                $("#main-hidden").addClass("hidden");
+                $("#main-hidden1").addClass("hidden");
+                $("#signup-8").removeClass("hidden");
+            });
         });
-
-        /*$("#fifth-step").click(function() {
-         
-         
-              var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-         
-             var fname1 = $('#fname1').val();
-          var lname1 = $('#lname1').val();
-          var mobile1 = $('#mobile1').val();
-          var email1 = $('#email1').val();
-         
-         
-         
-             if(fname1.trim() == '' ){
-         
-         
-                 alert('Please enter your First Name.');
-                 $('#fname1').focus();
-         
-                 return false;
-             }else if(lname1.trim() == '' ){
-                 alert('Please enter your Last Name.');
-                 $('#lname1').focus();
-                 return false;
-             }else if(mobile1.trim() == '' ){
-                 alert('Please enter your Mobile.');
-                 $('#mobile1').focus();
-                 return false;
-             }
-          else if(email1.trim() == '' ){
-                 alert('Please enter your email.');
-                 $('#email1').focus();
-                 return false;
-             }else if(email1.trim() != '' && !reg.test(email1)){
-                 alert('Please enter valid email.');
-                 $('#email1').focus();
-                 return false;
-          }
-         
-         
-         
-         
-            $("#signup-1").addClass("hidden");
-            $("#signup-2").addClass("hidden");
-          $("#signup-3").addClass("hidden");
-          $("#signup-4").addClass("hidden");
-          $("#signup-5").addClass("hidden");
-          $("#signup-6").addClass("hidden");
-          $("#signup-7").removeClass("hidden");
-          $("#li-step4").removeClass("active");
-          $("#li-step5").removeClass("active");
-          $("#li-step6").addClass("active");
-         
-                  $("#5-step").click(function() {
-                    $("#signup-1").addClass("hidden");
-                      $("#signup-2").addClass("hidden");
-                    $("#signup-3").addClass("hidden");
-                    $("#signup-4").addClass("hidden");
-                    $("#signup-5").addClass("hidden");
-                    $("#signup-6").removeClass("hidden");
-                    $("#signup-7").addClass("hidden");
-         
-                    $("#li-step6").removeClass("active");
-         
-                    $("#li-step5").addClass("active");
-         
-         
-                  });
-         
-                  $("#6-step").click(function() {
-                    $("#signup-1").addClass("hidden");
-                      $("#signup-2").addClass("hidden");
-                    $("#signup-3").addClass("hidden");
-                    $("#signup-4").addClass("hidden");
-                    $("#signup-5").addClass("hidden");
-                    $("#signup-6").addClass("hidden");
-                    $("#signup-7").removeClass("hidden");
-         
-                    $("#li-step6").addClass("active");
-         
-                    $("#li-step5").removeClass("active");
-         
-         
-                  });
-         
-           });
-         */
-        $("#six-step").click(function() {
-
-            $("#signup-1").addClass("hidden");
-            $("#signup-2").addClass("hidden");
-            $("#signup-3").addClass("hidden");
-            $("#signup-4").addClass("hidden");
-            $("#signup-5").addClass("hidden");
-            $("#signup-6").addClass("hidden");
-            $("#signup-7").addClass("hidden");
-            $("#main-hidden").addClass("hidden");
-            $("#main-hidden1").addClass("hidden");
-
-            $("#signup-8").removeClass("hidden");
-
-        });
-
-
-
-    });
     </script>
 </head>
 
@@ -696,9 +472,8 @@
                 <div class="col-12">
                     <div class="header__content">
                         <a href="index.html" class="header__logo">
-                            <object type="image/svg+xml" data="img/logo--black.svg"></object>
-                            <!-- <object type="image/svg+xml" data="img/logo--black.svg"></object> -->
-                            <object type="image/svg+xml" data="img/logo--black.svg"></object>
+                            <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
+                            <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
                         </a>
                         <nav class="header__nav">
                             <a href="driverlogin.html">Drive</a>
@@ -734,15 +509,27 @@
                                     <div id="main-hidden" class="col-md-5">
                                         <h3 id="signup-title">Affiliate Sign Up</h3>
                                         <ul id="ny" class="signup-step">
-                                            <li id="li-step0" class="active"><a id="0-step"></a></li>
-                                            <li id="li-step1"><a id="1-step"></a></li>
+                                            <li id="li-step0" class="active">
+                                                <a id="0-step"></a>
+                                            </li>
+                                            <li id="li-step1">
+                                                <a id="1-step"></a>
+                                            </li>
                                             <!--<li id="li-step2"><a id="2-step"></a></li>-->
-                                            <li id="li-step3"><a id="3-step"></a></li>
+                                            <li id="li-step3">
+                                                <a id="3-step"></a>
+                                            </li>
                                         </ul>
                                         <ul id="no-ny" class="signup-step hidden">
-                                            <li id="li-step4"><a id="4-step"></a></li>
-                                            <li id="li-step5" class="active"><a id="5-step"></a></li>
-                                            <li id="li-step6"><a id="6-step"></a></li>
+                                            <li id="li-step4">
+                                                <a id="4-step"></a>
+                                            </li>
+                                            <li id="li-step5" class="active">
+                                                <a id="5-step"></a>
+                                            </li>
+                                            <li id="li-step6">
+                                                <a id="6-step"></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div id="main-hidden1" class="col-md-7" style="margin-bottom: 16px !important;">
@@ -854,264 +641,11 @@
                                             <label>Zip Code</label>
                                             <input id="zip" class="zip" type="text" onkeyup="trimZip()" inputmode="numeric" placeholder="Your Area ZIP code">
                                         </div>
-                                        <!-- <div class="col-md-6">
-                                    <label>Referring code</label>
-                                    <input id="refferal" class="user-input" type="text"  inputmode="numeric" placeholder="Enter referring code">
-                                    </div>-->
                                         <div class="col-md-6">
                                             <label>Affiliate Type</label>
                                             <select id="select-subtype" class="select-state" name="subtype">
                                             </select>
                                         </div>
-                                        <!--<div class="row row-input">
-                                    <div class="col-md-6">
-                                       <label>What is your working schedule ?</label>
-                                    
-                                           <div class="row row-input">
-                                            <div class="col-xs-6 col-sm-6 ">
-                                                   <div class="row">
-                                    
-                                                   <label class="checkbox-custom">Part Time
-                                                   <input type="radio" checked name="work" value="1">
-                                                    <span class="checkmark"></span>
-                                                    </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6 col-sm-6 ">
-                                                   <div class="row">
-                                    
-                                                   <label class="checkbox-custom">Full Time
-                                                   <input type="radio" name="work" value="0">
-                                                    <span class="checkmark"></span></label>
-                                    
-                                                   <label class="checkbox-custom">
-                                                   </label>
-                                                    </div>
-                                                </div>
-                                    
-                                            </div>
-                                       </div>
-                                    
-                                       <div class="col-md-6">
-                                    
-                                    
-                                       <label>How did you hear about Qudos?</label>
-                                    
-                                           <div class="row row-input">
-                                            <div class="col-xs-6">
-                                                   <div class="row">
-                                    
-                                                   <label class="checkbox-custom">Friend
-                                                   <input type="radio" name="hear" value="friend">
-                                                    <span class="checkmark"></span>
-                                                    </label>
-                                    
-                                                   <label class="checkbox-custom">Campaigns
-                                                   <input type="radio" checked name="hear" value="campaigns">
-                                                    <span class="checkmark"></span>
-                                                    </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                   <div class="row">
-                                    
-                                                   <label class="checkbox-custom">Facebook
-                                                   <input type="radio"  name="hear" value="facebook">
-                                                    <span class="checkmark"></span>
-                                                    </label>
-                                                    <label class="checkbox-custom">Drivers
-                                                   <input type="radio"  name="hear" value="drivers">
-                                                    <span class="checkmark"></span>
-                                                    </label>
-                                                    </div>
-                                                </div>
-                                    
-                                            </div>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    </div>
-                                    
-                                    
-                                    
-                                    
-                                    <div class="row row-input">
-                                    <div class="col-md-6">
-                                       <label>Do you drive Uber?</label>
-                                    
-                                           <div class="row row-input">
-                                            <div class="col-xs-6">
-                                                   <div class="row">
-                                    
-                                                   <label class="checkbox-custom">Yes
-                                                   <input id="uber-yes" type="radio" name="uber" value="1">
-                                                    <span class="checkmark"></span>
-                                                    </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                   <div class="row">
-                                    
-                                                   <label class="checkbox-custom">No
-                                                   <input id="uber-no" type="radio" checked name="uber" value="0">
-                                                    <span class="checkmark"></span></label>
-                                    
-                                    
-                                                    </div>
-                                                </div>
-                                    
-                                         </div>
-                                        <script type="text/javascript">
-                                    $(function(){
-                                    
-                                    $("#uber-yes").click(function(){
-                                    
-                                    $("#drive-uber").removeClass("hidden");
-                                    });
-                                    $("#uber-no").click(function(){
-                                    
-                                    $("#drive-uber").addClass("hidden");
-                                    });
-                                    
-                                    });
-                                    
-                                    
-                                    
-                                    $(function(){
-                                    
-                                    $("#lyft-yes").click(function(){
-                                    
-                                    $("#drive-lyft").removeClass("hidden");
-                                    });
-                                    $("#lyft-no").click(function(){
-                                    
-                                    $("#drive-lyft").addClass("hidden");
-                                    });
-                                    
-                                    });
-                                    </script>
-                                    
-                                       <!--Start Driver Uber Dropdown
-                                        <div id="drive-uber" class="row row-input hidden">
-                                           <label>What is your rating at Uber?</label>
-                                                               <div class="col-xs-6">
-                                                                   <div class="row">
-                                                                   <label class="checkbox-custom">4.0 to 4.2
-                                                                   <input type="radio" name="uber_rating" checked value="4.0-4.2">
-                                                                    <span class="checkmark"></span>
-                                                                    </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-6">
-                                                                   <div class="row">
-                                                                   <label class="checkbox-custom">4.3 to 4.5
-                                                                   <input type="radio" name="uber_rating" value="4.3-4.5">
-                                                                    <span class="checkmark"></span>
-                                                                    </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-6">
-                                                                   <div class="row">
-                                                                   <label class="checkbox-custom">4.6 to 4.7
-                                                                   <input type="radio" name="uber_rating" value="4.6-4.7">
-                                                                    <span class="checkmark"></span>
-                                                                    </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-xs-6">
-                                                                   <div class="row">
-                                                                   <label class="checkbox-custom">4.8 to 4.9
-                                                                   <input type="radio" name="uber_rating" value="4.8-4.9">
-                                                                    <span class="checkmark"></span>
-                                                                    </label>
-                                                                    </div>
-                                                                </div>
-                                       </div>-->
-                                        <!--End Driver Uber Dropdown
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                    
-                                    <label>Do you drive Lyft?</label>
-                                    
-                                        <div class="row row-input">
-                                          <div class="col-xs-6">
-                                                <div class="row">
-                                    
-                                                <label class="checkbox-custom">Yes
-                                                <input id="lyft-yes" type="radio" name="lyft" value="1">
-                                                 <span class="checkmark"></span>
-                                                 </label>
-                                                 </div>
-                                             </div>
-                                             <div class="col-xs-6">
-                                                <div class="row">
-                                    
-                                                <label class="checkbox-custom">No
-                                                <input  id="lyft-no" type="radio" checked name="lyft" value="0">
-                                                 <span class="checkmark"></span></label>
-                                    
-                                                <label class="checkbox-custom">
-                                                </label>
-                                                 </div>
-                                             </div>
-                                    
-                                    
-                                             <!--Start Driver lyft Dropdown
-                                     <div id="drive-lyft" class="row row-input hidden">
-                                        <label>What is your rating at Lyft?</label>
-                                    
-                                    
-                                                            <div class="col-xs-6">
-                                    
-                                                                <div class="row">
-                                                                <label class="checkbox-custom">4.0 to 4.2
-                                                                <input type="radio" name="lyft_rating" checked value="4.0-4.2">
-                                                                 <span class="checkmark"></span>
-                                                                 </label>
-                                                                 </div>
-                                    
-                                                             </div>
-                                                             <div class="col-xs-6">
-                                    
-                                                                <div class="row">
-                                                                <label class="checkbox-custom">4.3 to 4.5
-                                                                <input type="radio" name="lyft_rating" value="4.3-4.5">
-                                                                 <span class="checkmark"></span>
-                                                                 </label>
-                                                                 </div>
-                                    
-                                                             </div>
-                                    
-                                                             <div class="col-xs-6">
-                                    
-                                                                <div class="row">
-                                                                <label class="checkbox-custom">4.6 to 4.7
-                                                                <input type="radio" name="lyft_rating" value="4.6-4.7">
-                                                                 <span class="checkmark"></span>
-                                                                 </label>
-                                                                 </div>
-                                    
-                                                             </div>
-                                                             <div class="col-xs-6">
-                                    
-                                                                <div class="row">
-                                                                <label class="checkbox-custom">4.8 to 4.9
-                                                                <input type="radio" name="lyft_rating" value="4.8-4.9">
-                                                                 <span class="checkmark"></span>
-                                                                 </label>
-                                                                 </div>
-                                    
-                                                             </div>
-                                    </div>
-                                    <!-- End Driver lyft Dropdown-->
-                                        <!--</div>
-                                    </div>
-                                    </div>
-                                    </div>-->
                                         <div class="row row-input">
                                             <div class="col-md-6 but-next">
                                                 <a id="second-step" href="#" class="submit">Next</a>
@@ -1120,44 +654,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--End Sign up Step 2-->
-                                <!--&lt;!&ndash;Start Sign up Step 3&ndash;&gt;-->
-                                <!--<div id="signup-3" class="row row-input hidden">-->
-                                <!--<div class="row row-input">-->
-                                <!--<div class="col-md-12"><p>Upload Documents</p></div>-->
-                                <!--<div class="row row-input">-->
-                                <!--<div class="col-md-4">-->
-                                <!--<label>TLC License</label>-->
-                                <!--<div class="file-input">-->
-                                <!--<input class="file" name="file1" type="file">-->
-                                <!--<label class="input-file">Attach TLC Document</label>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--<div class="col-md-4">-->
-                                <!--<label>DMV License</label>-->
-                                <!--<div class="file-input">-->
-                                <!--<input class="file" name="file2" type="file">-->
-                                <!--<label class="input-file">Attach DMV Document</label>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--<div class="row row-input">-->
-                                <!--<div class="col-md-12 top-margin">-->
-                                <!--<label class="checkbox-custom new-custom">-->
-                                <!--<input id="accept-term" type="checkbox" >-->
-                                <!--<span class="checkmark1"></span>-->
-                                <!--By clicking Next, I give Qudos and its representatives permission to contact me using the contact information I provided, including for marketing purposes. I agreed with the <a href="privacy/privacy.html">Terms and Conditions</a> and i have read and understood the <a href="privacy/privacy.html">Privacy Statement</a>.<br><br>-->
-                                <!--In case you are having any problem , send us an email at <a href="mailto:support@qudostechnologies.com">support@qudostechnologies.com</a>-->
-                                <!--</div></label>-->
-                                <!--</div>-->
-                                <!--<div class="col-md-6 but-next">-->
-                                <!--<a id="third-step" href="#" class="submit" >Next</a>-->
-                                <!--<p>Already have an account? <a data-dismiss="modal" data-toggle="modal" data-target="#signin-modal">Login</a></p>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--&lt;!&ndash;End Sign up Step 3&ndash;&gt;-->
-                                <!--Start Sign Up Step 4-->
                                 <div id="signup-4" class="row row-input  hidden">
                                     <div class="col-md-6 top-margin">
                                         <p><strong>Confirm your Mobile Number</strong></p>
@@ -1179,7 +675,7 @@
                                 <!--Start Sign up Step 5-->
                                 <div id="signup-5" class="row row-input hidden">
                                     <div class="col-md-12">
-                                        <p class="small-show"><img src="img/mail-sucess.png" alt="sucess">
+                                        <p class="small-show"><img src="core__assets/img/logins/mail-sucess.png" alt="sucess">
                                         </p>
                                     </div>
                                     <div class="col-md-6">
@@ -1196,7 +692,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 small-hide">
-                                        <p align="center"><img src="img/mail-sucess.png" width="200" height="200" alt="sucess">
+                                        <p align="center"><img src="core__assets/img/logins/mail-sucess.png" width="200" height="200" alt="sucess">
                                         </p>
                                     </div>
                                 </div>
@@ -1208,20 +704,23 @@
             </div>
         </div>
     </section>
-    <div class="bg-wrap" include-html="../../__assets/includes/footer/footer-black.html"></div>
-    <!--<script src="js/jquery-3.2.1.slim.min.js"></script>-->
-    <script src="logins/js/owl.carousel.min.js"></script>
-    <script src="logins/js/main.js"></script>
-    <script src="../../__assets/js/main.js"></script>
+    <div class="service-wrap">
+        <div include-html="core__components/footer/footer-black.html"></div>
+    </div>
+    <script src="core__assets/js/vendors/owl/owl.carousel.min.js"></script>
+    <script src="core__assets/js/config.js"></script>
+    <script src="core__assets/js/core.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149373672-1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', 'UA-149373672-1');
+        gtag('config', 'UA-149373672-1');
     </script>
 </body>
 

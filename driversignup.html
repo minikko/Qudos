@@ -4,35 +4,51 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start driving now and keep a steady base of loyal clients. Sign up to take control of your success.">
+    <meta name="keywords" content="">
     <!--CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/css/intlTelInput.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../__assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../__assets/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="../../__assets/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/bootstrap/bootstrap.min.css">
     <!-- Animate on Scroll -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <!-- Owl Carousel -->
-    <link rel="stylesheet" href="../../__assets/css/owl.carousel.min.css">
-    <!-- Fontello -->
-    <link rel="stylesheet" href="../../__assets/css/fontello.css">
-    <link rel="stylesheet" href="../../__assets/fontawesome/css/all.min.css">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="../../__assets/img/favIcon.png">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../../__assets/css/styles.min.css">
-    <link rel="stylesheet" href="logins/css/main.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/owl/owl.carousel.min.css">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans:400,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <meta name="description" content="Start driving now and keep a steady base of loyal clients. Sign up to take control of your success.">
-    <meta name="keywords" content="">
-    <link rel="shortcut icon" type="image/png" href="logins/img/favIcon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans:400,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="core__assets/css/vendors/fontello/fontello.css">
+    <link rel="stylesheet" href="core__assets/fonts/fontawesome/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="core__assets/img/logins/favIcon.png">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="core__assets/css/vendors/legacy/styles.min.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/legacy/main.css">
     <title>Qudos | Driver Sign Up</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/config.js"></script>
+    <script src="core__assets/js/config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/utils.js"></script>
+    
+     <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Qudos",
+        "operatingSystem": "iOS",
+        "applicationCategory": "Travel and Local",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.0",
+            "ratingCount": "14"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
     <style>
         #fourth-step.submit.disabled {
          opacity: 0.6;
@@ -52,75 +68,55 @@
       </style>
     <script type="text/javascript">
     var countryCode = '+' + $("#mobile").intlTelInput("getSelectedCountryData").dialCode + '-';
-
     function changeSignupTitle(title) {
         $("#signup-title").text(title);
     }
-
     function addRemoveClass(selector, classname, addClass) {
         addClass ? $(selector).addClass(classname) : $(selector).removeClass(classname);
         if (selector == "#signup-4") {
             document.querySelector(selector).classList.contains('hidden') == true ? changeSignupTitle('Driver Sign Up') : changeSignupTitle('OTP Sent');
         }
     }
-
-
     function trimZip() {
         var zipMaxLength = (countryToSet == "PH") ? 4 : 5;
-
         var desired = $('#zip').val().replace(/[^\w\s]/gi, '').replace(/\D/g, '');
         $('#zip').val(desired.slice(0, zipMaxLength));
     }
-
     function cleanText() {
         $('#fname').val($('#fname').val().replace(/[^\w\s]/gi, '').replace(/[0-9]/g, ""));
         $('#lname').val($('#lname').val().replace(/[^\w\s]/gi, '').replace(/[0-9]/g, ""));
     }
-
-
     function getStates(c_id) {
         $.post(PREREG_API_URL + '/states', { country_id: c_id }, function(data, status) {
             if (typeof data == 'string')
                 data = JSON.parse(data)
-
             var states = data.cities;
             var carTypes = data.carTypes;
             var langugaes = data.languages;
-
-
             var options = "";
             states.forEach(function(state) {
                 options += "<option value='" + state.state_id + "'>" + state.state_name + "</option>"
             });
             $("#select-state").html(options);
-
-
             var carOptions = "";
             carTypes.forEach(function(type) {
                 carOptions += "<option value='" + type.car_type + "'>" + type.car_name + "</option>"
             });
             $("#vehicle").html(carOptions);
-
             var langOptions = "";
             langugaes.forEach(function(lang) {
                 langOptions += "<option value='" + lang.language_name + "'>" + lang.language_name + "</option>"
             });
             $("#language").html(langOptions);
-
         });
-
     }
-
     var countries;
-
     function getCountries() {
         $.ajax({
             url: PREREG_API_URL + '/countryList',
             success: function(data, status) {
-
                 if (typeof data == 'string')
                     data = JSON.parse(data)
-
                 countries = data.countries;
                 console.log(countries);
                 var options = "";
@@ -137,26 +133,18 @@
     }
     var countryToSet = 'US';
     $(function() {
-
         $("#mobile").intlTelInput({
             nationalMode: true,
             preferredCountries: ["us", "ph"]
         });
-
         getStates(1);
         getCountries();
-
-
-
-
         $("#country").on('change', function() {
             console.log($(this).val(), ' selected');
-
             getStates($(this).val());
             if ($(this).val() == 2) {
                 countryToSet = 'PH';
                 $('#stateLabel').text('Select State/City');
-
             } else if ($(this).val() == 1) {
                 countryToSet = 'US';
                 $('#stateLabel').text('Select State');
@@ -164,22 +152,17 @@
                 countryToSet = $('#country option:selected').data('code');;
                 $('#stateLabel').text('Select State');
             }
-
             $("#mobile").intlTelInput("setCountry", countryToSet);
         });
         $("#first-step").click(function() {
-
             if ($("#country option:selected").text()) {
-
                 $("#signup-1").addClass("hidden");
                 $("#signup-2").removeClass("hidden");
                 $("#li-step0").removeClass("active");
                 $("#li-step1").addClass("active");
                 $("#ny").removeClass("hidden");
                 $("#no-ny").addClass("hidden");
-
                 $("#0-step").click(function() {
-
                     $("#signup-1").removeClass("hidden");
                     $("#signup-2").addClass("hidden");
                     $("#signup-3").addClass("hidden");
@@ -188,38 +171,25 @@
                     $("#li-step1").removeClass("active");
                     $("#li-step2").removeClass("active");
                     $("#li-step3").removeClass("active");
-
                     $("#1-step").click(function() {
                         $("#signup-1").addClass("hidden");
                         $("#signup-2").removeClass("hidden");
                         $("#li-step0").removeClass("active");
                         $("#li-step1").addClass("active");
                     });
-
                 });
-
             } else {
                 alert('Please Select a state');
                 return false;
             }
-
-
-
         });
-
-
         $("#second-step").click(function() {
-
             var zipMaxLength = (countryToSet == "PH") ? 4 : 5;
-
             var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-
             var fname = $('#fname').val();
             var lname = $('#lname').val();
             var mobile = $('#mobile').val();
             var countryCode = '+' + $("#mobile").intlTelInput("getSelectedCountryData").dialCode + '-';
-
-
             var email = $('#email').val();
             var password = $('#password').val();
             var passwordc = $('#passwordc').val();
@@ -228,8 +198,6 @@
             var state_id = $("#select-state option:selected").val();
             var how_hear_us = $("[name='hear']:checked").val();
             var refferal = $('#refferal').val();
-
-
             if (fname.trim() == '') {
                 alert('Please enter your First Name.');
                 $('#fname').focus();
@@ -285,12 +253,6 @@
                     return false;
                 }
             }
-
-            // else if(!how_hear_us || how_hear_us.trim()=='') {
-            //     alert('Please select How did you hear about Qudos?')
-            //     return false;
-            // }
-
             $.ajax({
                 method: 'POST',
                 url: PREREG_API_URL + '/otp/send',
@@ -300,11 +262,9 @@
                     referral_code: refferal,
                 },
                 success: function(data, status) {
-
                     if (typeof data == 'string') {
                         data = JSON.parse(data);
                     }
-
                     if (data.error) {
                         alert(data.error);
                         return false;
@@ -313,13 +273,10 @@
                         $("#signup-1").addClass("hidden");
                         $("#signup-2").addClass("hidden");
                         $("#signup-3").removeClass("hidden");
-
                         $("#li-step0").removeClass("active");
                         $("#li-step1").removeClass("active");
                         $("#li-step2").addClass("active");
-
                         $("#1-step").click(function() {
-
                             $("#signup-1").addClass("hidden");
                             $("#signup-2").removeClass("hidden");
                             $("#signup-3").addClass("hidden");
@@ -327,31 +284,20 @@
                             $("#li-step3").removeClass("active");
                             $("#li-step1").addClass("active");
                         });
-
                         $("#signup-1").addClass("hidden");
                         $("#signup-2").addClass("hidden");
-                        //$("#signup-3").addClass("hidden");
                         addRemoveClass('#signup-4', 'hidden', false)
-
                         $("#li-step0").removeClass("active");
                         $("#li-step1").removeClass("active");
-                        //$("#li-step2").removeClass("active");
                         $("#li-step3").addClass("active");
-
                         $("#3-step").click(function() {
-
                             $("#signup-1").addClass("hidden");
                             $("#signup-2").addClass("hidden");
-                            //$("#signup-3").removeClass("hidden");
                             addRemoveClass('#signup-4', 'hidden', false)
-
-                            //$("#li-step2").removeClass("active");
                             $("#li-step1").removeClass("active");
                             $("#li-step3").addClass("active");
-
                         });
                         $('html, body').animate({ scrollTop: 0 }, 'slow');
-
                         alert('An OTP has been sent on your mobile number');
                     }
                 },
@@ -359,10 +305,7 @@
                     console.log('Error while sending OTP: ', data);
                 }
             });
-
-
         });
-
         $("#resendOtp").click(function() {
             var mobile = $('#mobile').val();
             var countryCode = '+' + $("#mobile").intlTelInput("getSelectedCountryData").dialCode + '-';
@@ -391,7 +334,6 @@
                 }
             });
         });
-
         $("#changeMobile").click(function() {
             $("#signup-2").removeClass("hidden");
             addRemoveClass('#signup-4', 'hidden', true)
@@ -399,9 +341,7 @@
             $("#li-step1").addClass("active");
             $("#li-step3").removeClass("active");
         })
-
         $("#fourth-step").click(function() {
-
             var first_name = $('#fname').val();
             var last_name = $('#lname').val();
             var countryCode = '+' + $("#mobile").intlTelInput("getSelectedCountryData").dialCode + '-';
@@ -420,9 +360,7 @@
             var lyft_rating = $("[name='lyft']:checked").val() == '1' ? $("[name='lyft_rating']:checked").val() : "0.0";
             var refferal = $('#refferal').val();
             var language = $('#language').val();
-
             var otp = $('#otp').val();
-
             if (otp.trim() == '') {
                 alert('Please Enter OTP');
                 $('#otp').focus();
@@ -505,12 +443,8 @@
                     $(that).attr('disabled', false).removeClass('disabled');
                 }
             })
-
         });
-
-
         $("#six-step").click(function() {
-
             $("#signup-1").addClass("hidden");
             $("#signup-2").addClass("hidden");
             $("#signup-3").addClass("hidden");
@@ -520,18 +454,12 @@
             $("#signup-7").addClass("hidden");
             $("#main-hidden").addClass("hidden");
             $("#main-hidden1").addClass("hidden");
-
             $("#signup-8").removeClass("hidden");
-
         });
-
     });
-
-
     function getQueryStringValue(key) {
         return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
     }
-
     $(document).ready(function() {
         console.log('Referral Code - ', getQueryStringValue("referral_code"));
         $('#refferal').val(getQueryStringValue("referral_code"));
@@ -546,9 +474,8 @@
                 <div class="col-12">
                     <div class="header__content">
                         <a href="index.html" class="header__logo">
-                            <object type="image/svg+xml" data="img/logo--black.svg"></object>
-                            <!-- <object type="image/svg+xml" data="img/logo--black.svg"></object> -->
-                            <object type="image/svg+xml" data="img/logo--black.svg"></object>
+                            <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
+                            <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
                         </a>
                         <nav class="header__nav">
                             <a href="affiliatelogin.html">Affiliate</a>
@@ -806,21 +733,17 @@
             </div>
         </div>
     </section>
-    <div class="bg-wrap" include-html="../../__assets/includes/footer/footer-black.html"></div>
-    <!--<script src="js/jquery-3.2.1.slim.min.js"></script>-->
-    <script src="logins/js/owl.carousel.min.js"></script>
-    <script src="logins/js/main.js"></script>
-    <script src="../../__assets/js/main.js"></script>
-
-
-    
+    <div class="service-wrap">
+        <div include-html="core__components/footer/footer-black.html"></div>
+    </div>
+    <script src="core__assets/js/vendors/owl/owl.carousel.min.js"></script>
+    <script src="core__assets/js/core.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149373672-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-149373672-1');
     </script>
 </body>

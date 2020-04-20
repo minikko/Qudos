@@ -4,316 +4,246 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Need a ride? Sign up for Qudos and learn more about how you can take control of your ride-hailing experience.">
+    <meta name="keywords" content="">
     <!--CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/css/intlTelInput.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../__assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../__assets/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="../../__assets/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/bootstrap/bootstrap.min.css">
     <!-- Animate on Scroll -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <!-- Owl Carousel -->
-    <link rel="stylesheet" href="../../__assets/css/owl.carousel.min.css">
-    <!-- Fontello -->
-    <link rel="stylesheet" href="../../__assets/css/fontello.css">
-    <link rel="stylesheet" href="../../__assets/fontawesome/css/all.min.css">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="../../__assets/img/favIcon.png">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../../__assets/css/styles.min.css">
-    <link rel="stylesheet" href="logins/css/main.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/owl/owl.carousel.min.css">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans:400,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="shortcut icon" type="image/png" href="logins/img/favIcon.png">
-    <meta name="description" content="Need a ride? Sign up for Qudos and learn more about how you can take control of your ride-hailing experience.">
-    <meta name="keywords" content="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans:400,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="core__assets/css/vendors/fontello/fontello.css">
+    <link rel="stylesheet" href="core__assets/fonts/fontawesome/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="core__assets/img/logins/favIcon.png">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="core__assets/css/vendors/legacy/styles.min.css">
+    <link rel="stylesheet" href="core__assets/css/vendors/legacy/main.css">
     <title>Qudos | Rider Sign Up</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/config.js"></script>
+    <script src="core__assets/js/vendors/legacy/config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/utils.js"></script>
+    
+     <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Qudos",
+        "operatingSystem": "iOS",
+        "applicationCategory": "Travel and Local",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.0",
+            "ratingCount": "14"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
     <style>
         #six-step.submit.disabled {
-         opacity: 0.6;
-         background: grey;
-         cursor: not-allowed;
-         }
-         .popup-main-content input.location-add {
-         background: url(../img/location.png) 19px 14px no-repeat;
-         background-size: 15px;
-         }
-         .countrycodeOverlay {
-         width: 14%;
-         height: 76%;
-         position: absolute;
-         z-index: 9999;
-         top: 19%;
-         }
-      </style>
+            opacity: 0.6;
+            background: grey;
+            cursor: not-allowed;
+        }
+        
+        .popup-main-content input.location-add {
+            background: url(../img/location.png) 19px 14px no-repeat;
+            background-size: 15px;
+        }
+        
+        .countrycodeOverlay {
+            width: 14%;
+            height: 76%;
+            position: absolute;
+            z-index: 9999;
+            top: 19%;
+        }
+    </style>
     <script type="text/javascript">
-    function getStates(c_id) {
-        $.post(RIDER_API_URL + '/user/states', { country_id: c_id }, function(data, status) {
-            if (typeof data == 'string')
-                data = JSON.parse(data)
-            var states = data.cities;
-            var options = "";
-            states.forEach(function(state) {
-                options += "<option value='" + state.state_id + "'>" + state.state_name + "</option>"
-            });
-            $("#select-state").html(options);
-        });
-
-    }
-
-
-
-    var countries;
-
-    function getCountries() {
-
-        $.ajax({
-            url: RIDER_API_URL + '/user/countryList',
-            success: function(data, status) {
-
+        function getStates(c_id) {
+            $.post(RIDER_API_URL + '/user/states', {
+                country_id: c_id
+            }, function(data, status) {
                 if (typeof data == 'string')
                     data = JSON.parse(data)
-                countries = data.countries;
-                console.log(countries);
+                var states = data.cities;
                 var options = "";
-                var disabled;
-                countries.forEach(function(country) {
-                    options += "<option value='" + country.country_id + "' data-code='" + country.country_code + "'  >" + country.country_name + "</option>"
+                states.forEach(function(state) {
+                    options += "<option value='" + state.state_id + "'>" + state.state_name + "</option>"
                 });
-                $("#country").html(options);
-            },
-            error: function(data, status) {
-                console.log('Error occured while retriving states');
-            }
-        });
+                $("#select-state").html(options);
+            });
+        }
+        var countries;
 
-    }
-
-
-    var countryToSet = 'US';
-
-
-
-    $(function() {
-
-
-        getStates(1);
-        getCountries();
-
-
-        $("#country").on('change', function() {
-            console.log($(this).val(), ' selected');
-            if ($(this).val() == '2') {
-                countryToSet = 'PH';
-                $('#stateLabel').text('Select State/City');
-            } else if ($(this).val() == '1') {
-                countryToSet = 'US';
-                $('#stateLabel').text('Select State');
-            } else {
-                countryToSet = $('#country option:selected').data('code');;
-                $('#stateLabel').text('Select State');
-
-            }
-            getStates($(this).val());
-            $("#phone").intlTelInput("setCountry", countryToSet);
-        });
-
-
-
-
-        $("#phone").intlTelInput({
-            nationalMode: true,
-            preferredCountries: ["us", "ph", "in"]
-        });
-        $('select.country').on('change', function() {
-            $('.main-mobile').text('+' + this.value + '-');
-        });
-
-
-
-
-
-        $("#first-step").click(function() {
-
-            if ($("#select-state option:selected").text()) {
-
-                $("#signup-1").addClass("hidden");
-                $("#signup-6").removeClass("hidden");
-                $("#li-step0").removeClass("active");
-                $("#li-step1").addClass("active");
-                $("#ny").removeClass("hidden");
-                $("#no-ny").addClass("hidden");
-
-                $("#4-step").click(function() {
-
-                    $("#signup-1").removeClass("hidden");
-                    $("#signup-6").addClass("hidden");
-
-                    $("#li-step4").addClass("active");
-                    $("#li-step5").removeClass("active");
-
-                    $("#5-step").click(function() {
-                        $("#signup-1").addClass("hidden");
-                        $("#signup-6").removeClass("hidden");
-                        $("#li-step4").removeClass("active");
-                        $("#li-step5").addClass("active");
-                    });
-
-                });
-
-                $("#0-step").click(function() {
-
-                    $("#signup-1").removeClass("hidden");
-                    $("#signup-6").addClass("hidden");
-                    $("#signup-2").addClass("hidden");
-                    $("#signup-3").addClass("hidden");
-                    $("#signup-4").addClass("hidden");
-                    $("#li-step0").addClass("active");
-                    $("#li-step1").removeClass("active");
-                    $("#li-step2").removeClass("active");
-                    $("#li-step3").removeClass("active");
-
-                    $("#1-step").click(function() {
-                        $("#signup-1").addClass("hidden");
-                        $("#signup-2").removeClass("hidden");
-                        $("#li-step0").removeClass("active");
-                        $("#li-step1").addClass("active");
-                    });
-
-                });
-
-            } else {
-                alert('Please Select a state');
-                return false;
-            }
-
-        });
-
-        $("#fifth-step").click(function() {
-
-
-            var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-
-            var fname1 = $('#fname1').val();
-            var lname1 = $('#lname1').val();
-            var countryCode = '+' + $("#phone").intlTelInput("getSelectedCountryData").dialCode + '-';
-            var mobile1 = $("#phone").val();
-            var email1 = $('#email1').val();
-            var referral = $('#referral').val();
-            var zipcode = $('#zipcode').val();
-            var country_id = $("#country option:selected").val();
-            var state_id = $("#select-state option:selected").val();
-            var city = $('#city').val();
-
-            if (fname1.trim() == '') {
-
-
-                alert('Please enter your First Name.');
-                $('#fname1').focus();
-
-                return false;
-            } else if (lname1.trim() == '') {
-                alert('Please enter your Last Name.');
-                $('#lname1').focus();
-                return false;
-            } else if (mobile1.trim() == '') {
-                alert('Please enter your Mobile Number.');
-                $('#mobile1').focus();
-                return false;
-            } else if (!/^[1-9]{1}[0-9]{5,9}$/.test(mobile1)) {
-                alert('Please enter valid Mobile Number');
-                $('#mobile').focus();
-                return false;
-            } else if (email1.trim() == '') {
-                alert('Please enter your email.');
-                $('#email1').focus();
-                return false;
-            } else if (email1.trim() != '' && !reg.test(email1)) {
-                alert('Please enter valid email.');
-                $('#email1').focus();
-                return false;
-            } else if (city.trim() == '') {
-                alert('Please enter your City.');
-                $('#city').focus();
-                return false;
-            } else if (zipcode.trim() == '') {
-                alert('Please enter your Zip Code.');
-                $('#zipcode').focus();
-                return false;
-            } else if (zipcode.length < zipMaxLength) {
-                alert('Please Enter valid zip code.');
-                $('#zipcode').focus();
-                return false;
-            }
-
-
-
+        function getCountries() {
             $.ajax({
-                method: 'POST',
-                url: RIDER_API_URL + '/check_mobile',
-                async: true,
-                data: {
-                    user_mobile: countryCode + mobile1,
-                    user_email: email1,
-                },
+                url: RIDER_API_URL + '/user/countryList',
                 success: function(data, status) {
-                    if (typeof(data) == 'string') data = JSON.parse(data);
-                    if (data.error) {
-                        alert(data.error);
-                        return false;
-                    } else if (data.flag == 123) {
-                        alert('This phone number is already registered with us.');
-                        return false;
-                    } else if (data.flag == 108) {
-                        alert('Please enter a valid phone number');
-                        return false;
-                    }
-
-                    $("#signup-1").addClass("hidden");
-                    $("#signup-2").addClass("hidden");
-                    $("#signup-3").addClass("hidden");
-                    $("#signup-4").addClass("hidden");
-                    $("#signup-5").addClass("hidden");
-                    $("#signup-6").addClass("hidden");
-                    $("#signup-7").removeClass("hidden");
-                    $("#li-step4").removeClass("active");
-                    $("#li-step5").removeClass("active");
-                    $("#li-step6").addClass("active");
-
-
-                    $("#li-step1").removeClass("active");
-
-                    $("#li-step2").addClass("active");
-
-                    $("#1-step").click(function() {
-                        $("#signup-7").addClass("hidden");
-                        $("#signup-6").removeClass("hidden");
-                        $("#li-step1").addClass("active");
-                        $("#li-step2").removeClass("active");
+                    if (typeof data == 'string')
+                        data = JSON.parse(data)
+                    countries = data.countries;
+                    console.log(countries);
+                    var options = "";
+                    var disabled;
+                    countries.forEach(function(country) {
+                        options += "<option value='" + country.country_id + "' data-code='" + country.country_code + "'  >" + country.country_name + "</option>"
                     });
+                    $("#country").html(options);
+                },
+                error: function(data, status) {
+                    console.log('Error occured while retriving states');
+                }
+            });
+        }
+        var countryToSet = 'US';
+        $(function() {
+            getStates(1);
+            getCountries();
+            $("#country").on('change', function() {
+                console.log($(this).val(), ' selected');
+                if ($(this).val() == '2') {
+                    countryToSet = 'PH';
+                    $('#stateLabel').text('Select State/City');
+                } else if ($(this).val() == '1') {
+                    countryToSet = 'US';
+                    $('#stateLabel').text('Select State');
+                } else {
+                    countryToSet = $('#country option:selected').data('code');;
+                    $('#stateLabel').text('Select State');
 
-
-                    $("#5-step").click(function() {
-                        $("#signup-1").addClass("hidden");
+                }
+                getStates($(this).val());
+                $("#phone").intlTelInput("setCountry", countryToSet);
+            });
+            $("#phone").intlTelInput({
+                nationalMode: true,
+                preferredCountries: ["us", "ph", "in"]
+            });
+            $('select.country').on('change', function() {
+                $('.main-mobile').text('+' + this.value + '-');
+            });
+            $("#first-step").click(function() {
+                if ($("#select-state option:selected").text()) {
+                    $("#signup-1").addClass("hidden");
+                    $("#signup-6").removeClass("hidden");
+                    $("#li-step0").removeClass("active");
+                    $("#li-step1").addClass("active");
+                    $("#ny").removeClass("hidden");
+                    $("#no-ny").addClass("hidden");
+                    $("#4-step").click(function() {
+                        $("#signup-1").removeClass("hidden");
+                        $("#signup-6").addClass("hidden");
+                        $("#li-step4").addClass("active");
+                        $("#li-step5").removeClass("active");
+                        $("#5-step").click(function() {
+                            $("#signup-1").addClass("hidden");
+                            $("#signup-6").removeClass("hidden");
+                            $("#li-step4").removeClass("active");
+                            $("#li-step5").addClass("active");
+                        });
+                    });
+                    $("#0-step").click(function() {
+                        $("#signup-1").removeClass("hidden");
+                        $("#signup-6").addClass("hidden");
                         $("#signup-2").addClass("hidden");
                         $("#signup-3").addClass("hidden");
                         $("#signup-4").addClass("hidden");
-                        $("#signup-5").addClass("hidden");
-                        $("#signup-6").removeClass("hidden");
-                        $("#signup-7").addClass("hidden");
-
-                        $("#li-step6").removeClass("active");
-
-                        $("#li-step5").addClass("active");
-
+                        $("#li-step0").addClass("active");
+                        $("#li-step1").removeClass("active");
+                        $("#li-step2").removeClass("active");
+                        $("#li-step3").removeClass("active");
+                        $("#1-step").click(function() {
+                            $("#signup-1").addClass("hidden");
+                            $("#signup-2").removeClass("hidden");
+                            $("#li-step0").removeClass("active");
+                            $("#li-step1").addClass("active");
+                        });
                     });
-
-                    $("#6-step").click(function() {
+                } else {
+                    alert('Please Select a state');
+                    return false;
+                }
+            });
+            $("#fifth-step").click(function() {
+                var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+                var fname1 = $('#fname1').val();
+                var lname1 = $('#lname1').val();
+                var countryCode = '+' + $("#phone").intlTelInput("getSelectedCountryData").dialCode + '-';
+                var mobile1 = $("#phone").val();
+                var email1 = $('#email1').val();
+                var referral = $('#referral').val();
+                var zipcode = $('#zipcode').val();
+                var country_id = $("#country option:selected").val();
+                var state_id = $("#select-state option:selected").val();
+                var city = $('#city').val();
+                if (fname1.trim() == '') {
+                    alert('Please enter your First Name.');
+                    $('#fname1').focus();
+                    return false;
+                } else if (lname1.trim() == '') {
+                    alert('Please enter your Last Name.');
+                    $('#lname1').focus();
+                    return false;
+                } else if (mobile1.trim() == '') {
+                    alert('Please enter your Mobile Number.');
+                    $('#mobile1').focus();
+                    return false;
+                } else if (!/^[1-9]{1}[0-9]{5,9}$/.test(mobile1)) {
+                    alert('Please enter valid Mobile Number');
+                    $('#mobile').focus();
+                    return false;
+                } else if (email1.trim() == '') {
+                    alert('Please enter your email.');
+                    $('#email1').focus();
+                    return false;
+                } else if (email1.trim() != '' && !reg.test(email1)) {
+                    alert('Please enter valid email.');
+                    $('#email1').focus();
+                    return false;
+                } else if (city.trim() == '') {
+                    alert('Please enter your City.');
+                    $('#city').focus();
+                    return false;
+                } else if (zipcode.trim() == '') {
+                    alert('Please enter your Zip Code.');
+                    $('#zipcode').focus();
+                    return false;
+                } else if (zipcode.length < zipMaxLength) {
+                    alert('Please Enter valid zip code.');
+                    $('#zipcode').focus();
+                    return false;
+                }
+                $.ajax({
+                    method: 'POST',
+                    url: RIDER_API_URL + '/check_mobile',
+                    async: true,
+                    data: {
+                        user_mobile: countryCode + mobile1,
+                        user_email: email1,
+                    },
+                    success: function(data, status) {
+                        if (typeof(data) == 'string') data = JSON.parse(data);
+                        if (data.error) {
+                            alert(data.error);
+                            return false;
+                        } else if (data.flag == 123) {
+                            alert('This phone number is already registered with us.');
+                            return false;
+                        } else if (data.flag == 108) {
+                            alert('Please enter a valid phone number');
+                            return false;
+                        }
                         $("#signup-1").addClass("hidden");
                         $("#signup-2").addClass("hidden");
                         $("#signup-3").addClass("hidden");
@@ -321,141 +251,155 @@
                         $("#signup-5").addClass("hidden");
                         $("#signup-6").addClass("hidden");
                         $("#signup-7").removeClass("hidden");
-
-                        $("#li-step6").addClass("active");
-
+                        $("#li-step4").removeClass("active");
                         $("#li-step5").removeClass("active");
-                    });
-                    $('html, body').animate({ scrollTop: 0 }, 'slow');
-                    if (data.log) {
-                        alert(data.log);
-                    }
-
-                },
-                error: function(data, status) {
-                    console.log('Error occured while sending otp')
-                }
-            });
-
-        });
-
-        $("#six-step").click(function() {
-
-            var fname1 = $('#fname1').val();
-            var lname1 = $('#lname1').val();
-            var mobile1 = $("#phone").val();
-            var countryCode = '+' + $("#phone").intlTelInput("getSelectedCountryData").dialCode + '-';
-            var email1 = $('#email1').val();
-            var password1 = $('#password1').val();
-            var country_id = $("#country option:selected").val();
-            var country = $("#country option:selected").text();
-            var state_id = $("#select-state option:selected").val();
-            var otp1 = $('#otp1').val();
-            var referral = $('#referral').val();
-            var zipcode = $('#zipcode').val();
-            var city = $('#city').val();
-
-
-            if (otp1.trim() == '') {
-                alert('Please Enter OTP');
-                return false;
-            } else if (password1 == '') {
-                alert('Please Enter Password');
-                $('#password1').focus();
-                return false;
-            } else if (password1.length < 6) {
-                alert('Please enter atleast 6 characters');
-                $('#password1').focus();
-                return false;
-            }
-
-            that = this;
-            $(that).attr('disabled', true).addClass('disabled');
-
-            $.ajax({
-                method: 'POST',
-                url: RIDER_API_URL + '/verify_otp',
-                async: true,
-                data: {
-                    user_mobile: countryCode + mobile1,
-                    is_approved: 1,
-                    otp: otp1
-                },
-                success: function(data, status) {
-                    if (typeof(data) == 'string') data = JSON.parse(data);
-                    if (data.error) {
-                        $(that).attr('disabled', false).removeClass('disabled');
-                        alert(data.error);
-                        return false;
-                    } else {
-                        $.ajax({
-                            method: 'POST',
-                            url: RIDER_API_URL + '/email_registration',
-                            async: true,
-                            data: {
-                                user_name: fname1 + ' ' + lname1,
-                                user_mobile: countryCode + mobile1,
-                                user_email: email1,
-                                password: password1,
-                                referring_code: referral,
-                                zipcode: zipcode,
-                                city: city,
-                                state_id: state_id,
-                                country: country,
-                                country_id: country_id,
-                                is_corporate: 0,
-                            },
-                            success: function(data, status) {
-                                if (typeof(data) == 'string') data = JSON.parse(data);
-                                if (data.error) {
-                                    $(that).attr('disabled', false).removeClass('disabled');
-                                    alert(data.error);
-                                    return false;
-                                }
-
-                                $("#signup-1").addClass("hidden");
-                                $("#signup-2").addClass("hidden");
-                                $("#signup-3").addClass("hidden");
-                                $("#signup-4").addClass("hidden");
-                                $("#signup-5").addClass("hidden");
-                                $("#signup-6").addClass("hidden");
-                                $("#signup-7").addClass("hidden");
-                                $("#main-hidden").addClass("hidden");
-                                $("#main-hidden1").addClass("hidden");
-
-                                $("#signup-8").removeClass("hidden");
-                                $('html, body').animate({ scrollTop: 0 }, 'slow');
-
-                            },
-                            error: function(data, status) {
-                                $(that).attr('disabled', false).removeClass('disabled');
-                                console.log('Error occured while sending otp')
-                            }
+                        $("#li-step6").addClass("active");
+                        $("#li-step1").removeClass("active");
+                        $("#li-step2").addClass("active");
+                        $("#1-step").click(function() {
+                            $("#signup-7").addClass("hidden");
+                            $("#signup-6").removeClass("hidden");
+                            $("#li-step1").addClass("active");
+                            $("#li-step2").removeClass("active");
                         });
+                        $("#5-step").click(function() {
+                            $("#signup-1").addClass("hidden");
+                            $("#signup-2").addClass("hidden");
+                            $("#signup-3").addClass("hidden");
+                            $("#signup-4").addClass("hidden");
+                            $("#signup-5").addClass("hidden");
+                            $("#signup-6").removeClass("hidden");
+                            $("#signup-7").addClass("hidden");
+                            $("#li-step6").removeClass("active");
+                            $("#li-step5").addClass("active");
+                        });
+                        $("#6-step").click(function() {
+                            $("#signup-1").addClass("hidden");
+                            $("#signup-2").addClass("hidden");
+                            $("#signup-3").addClass("hidden");
+                            $("#signup-4").addClass("hidden");
+                            $("#signup-5").addClass("hidden");
+                            $("#signup-6").addClass("hidden");
+                            $("#signup-7").removeClass("hidden");
+                            $("#li-step6").addClass("active");
+                            $("#li-step5").removeClass("active");
+                        });
+                        $('html, body').animate({
+                            scrollTop: 0
+                        }, 'slow');
+                        if (data.log) {
+                            alert(data.log);
+                        }
+                    },
+                    error: function(data, status) {
+                        console.log('Error occured while sending otp')
                     }
-                },
-                error: function(data, status) {
-                    $(that).attr('disabled', false).removeClass('disabled');
-                    console.log('Error occured confirming otp:', data);
-                }
+                });
             });
-
+            $("#six-step").click(function() {
+                var fname1 = $('#fname1').val();
+                var lname1 = $('#lname1').val();
+                var mobile1 = $("#phone").val();
+                var countryCode = '+' + $("#phone").intlTelInput("getSelectedCountryData").dialCode + '-';
+                var email1 = $('#email1').val();
+                var password1 = $('#password1').val();
+                var country_id = $("#country option:selected").val();
+                var country = $("#country option:selected").text();
+                var state_id = $("#select-state option:selected").val();
+                var otp1 = $('#otp1').val();
+                var referral = $('#referral').val();
+                var zipcode = $('#zipcode').val();
+                var city = $('#city').val();
+                if (otp1.trim() == '') {
+                    alert('Please Enter OTP');
+                    return false;
+                } else if (password1 == '') {
+                    alert('Please Enter Password');
+                    $('#password1').focus();
+                    return false;
+                } else if (password1.length < 6) {
+                    alert('Please enter atleast 6 characters');
+                    $('#password1').focus();
+                    return false;
+                }
+                that = this;
+                $(that).attr('disabled', true).addClass('disabled');
+                $.ajax({
+                    method: 'POST',
+                    url: RIDER_API_URL + '/verify_otp',
+                    async: true,
+                    data: {
+                        user_mobile: countryCode + mobile1,
+                        is_approved: 1,
+                        otp: otp1
+                    },
+                    success: function(data, status) {
+                        if (typeof(data) == 'string') data = JSON.parse(data);
+                        if (data.error) {
+                            $(that).attr('disabled', false).removeClass('disabled');
+                            alert(data.error);
+                            return false;
+                        } else {
+                            $.ajax({
+                                method: 'POST',
+                                url: RIDER_API_URL + '/email_registration',
+                                async: true,
+                                data: {
+                                    user_name: fname1 + ' ' + lname1,
+                                    user_mobile: countryCode + mobile1,
+                                    user_email: email1,
+                                    password: password1,
+                                    referring_code: referral,
+                                    zipcode: zipcode,
+                                    city: city,
+                                    state_id: state_id,
+                                    country: country,
+                                    country_id: country_id,
+                                    is_corporate: 0,
+                                },
+                                success: function(data, status) {
+                                    if (typeof(data) == 'string') data = JSON.parse(data);
+                                    if (data.error) {
+                                        $(that).attr('disabled', false).removeClass('disabled');
+                                        alert(data.error);
+                                        return false;
+                                    }
+                                    $("#signup-1").addClass("hidden");
+                                    $("#signup-2").addClass("hidden");
+                                    $("#signup-3").addClass("hidden");
+                                    $("#signup-4").addClass("hidden");
+                                    $("#signup-5").addClass("hidden");
+                                    $("#signup-6").addClass("hidden");
+                                    $("#signup-7").addClass("hidden");
+                                    $("#main-hidden").addClass("hidden");
+                                    $("#main-hidden1").addClass("hidden");
+                                    $("#signup-8").removeClass("hidden");
+                                    $('html, body').animate({
+                                        scrollTop: 0
+                                    }, 'slow');
+                                },
+                                error: function(data, status) {
+                                    $(that).attr('disabled', false).removeClass('disabled');
+                                    console.log('Error occured while sending otp')
+                                }
+                            });
+                        }
+                    },
+                    error: function(data, status) {
+                        $(that).attr('disabled', false).removeClass('disabled');
+                        console.log('Error occured confirming otp:', data);
+                    }
+                });
+            });
         });
 
-
-    });
-
-
-
-
-    function getQueryStringValue(key) {
-        return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
-    }
-
-    $(document).ready(function() {
-        console.log('Referral Code - ', getQueryStringValue("referral_code"));
-        $('#referral').val(getQueryStringValue("referral_code"));
-    });
+        function getQueryStringValue(key) {
+            return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+        }
+        $(document).ready(function() {
+            console.log('Referral Code - ', getQueryStringValue("referral_code"));
+            $('#referral').val(getQueryStringValue("referral_code"));
+        });
     </script>
 </head>
 
@@ -466,9 +410,8 @@
                 <div class="col-12">
                     <div class="header__content">
                         <a href="index.html" class="header__logo">
-                            <object type="image/svg+xml" data="img/logo--black.svg"></object>
-                            <!-- <object type="image/svg+xml" data="img/logo--black.svg"></object> -->
-                            <object type="image/svg+xml" data="img/logo--black.svg"></object>
+                            <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
+                            <object type="image/svg+xml" data="core__assets/img/logo--black.svg"></object>
                         </a>
                         <nav class="header__nav">
                             <a href="affiliatelogin.html">Affiliate</a>
@@ -504,15 +447,27 @@
                                     <div id="main-hidden" class="col-md-5">
                                         <h3>Rider Sign Up</h3>
                                         <ul id="ny" class="signup-step">
-                                            <li id="li-step0" class="active"><a id="0-step"></a></li>
-                                            <li id="li-step1" class=""><a id="1-step"></a></li>
-                                            <li id="li-step2"><a id="2-step"></a></li>
+                                            <li id="li-step0" class="active">
+                                                <a id="0-step"></a>
+                                            </li>
+                                            <li id="li-step1" class="">
+                                                <a id="1-step"></a>
+                                            </li>
+                                            <li id="li-step2">
+                                                <a id="2-step"></a>
+                                            </li>
                                             <!--<li id="li-step3"><a id="3-step"></a></li>-->
                                         </ul>
                                         <ul id="no-ny" class="signup-step hidden">
-                                            <li id="li-step4"><a id="4-step"></a></li>
-                                            <li id="li-step5" class="active"><a id="5-step"></a></li>
-                                            <li id="li-step6"><a id="6-step"></a></li>
+                                            <li id="li-step4">
+                                                <a id="4-step"></a>
+                                            </li>
+                                            <li id="li-step5" class="active">
+                                                <a id="5-step"></a>
+                                            </li>
+                                            <li id="li-step6">
+                                                <a id="6-step"></a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div id="main-hidden1" class="col-md-7">
@@ -644,38 +599,35 @@
                                             <div class="col-xs-7"><a id="changeMobile" href="javascript:void(0)">Change Mobile number</a></div>
                                         </div>
                                         <script>
-                                        $("#changeMobile").click(function() {
-                                            console.log('here')
-                                            $("#signup-6").removeClass("hidden");
-                                            $("#signup-7").addClass("hidden");
-                                        })
-
-
-                                        $("#resendOtp").click(function() {
-                                            var mobile1 = $("#phone").val();
-                                            var countryCode = '+' + $("#phone").intlTelInput("getSelectedCountryData").dialCode + '-';
-                                            $.ajax({
-                                                method: 'POST',
-                                                url: RIDER_API_URL + '/resend_otp',
-                                                async: true,
-                                                data: {
-                                                    user_mobile: countryCode + mobile1,
-                                                    is_approved: 1
-                                                },
-                                                success: function(data, status) {
-                                                    console.log('OTP has been sent', data);
-                                                    if (typeof data === "string") {
-                                                        data = JSON.parse(data);
+                                            $("#changeMobile").click(function() {
+                                                console.log('here')
+                                                $("#signup-6").removeClass("hidden");
+                                                $("#signup-7").addClass("hidden");
+                                            })
+                                            $("#resendOtp").click(function() {
+                                                var mobile1 = $("#phone").val();
+                                                var countryCode = '+' + $("#phone").intlTelInput("getSelectedCountryData").dialCode + '-';
+                                                $.ajax({
+                                                    method: 'POST',
+                                                    url: RIDER_API_URL + '/resend_otp',
+                                                    async: true,
+                                                    data: {
+                                                        user_mobile: countryCode + mobile1,
+                                                        is_approved: 1
+                                                    },
+                                                    success: function(data, status) {
+                                                        console.log('OTP has been sent', data);
+                                                        if (typeof data === "string") {
+                                                            data = JSON.parse(data);
+                                                        }
+                                                        $('#otp1').val('');
+                                                        alert('An OTP has been sent on your mobile number');
+                                                    },
+                                                    error: function(data, status) {
+                                                        console.log('Error occured while resending otp')
                                                     }
-                                                    $('#otp1').val('');
-                                                    alert('An OTP has been sent on your mobile number');
-
-                                                },
-                                                error: function(data, status) {
-                                                    console.log('Error occured while resending otp')
-                                                }
+                                                });
                                             });
-                                        })
                                         </script>
                                         <div class="row row-input top-margin">
                                             <button id="six-step" href="javascript:;" class="submit">Create My Rider Account</button>
@@ -716,44 +668,40 @@
             </div>
         </div>
     </section>
-    <div class="bg-wrap" include-html="../../__assets/includes/footer/footer-black.html"></div>
-    <!--<script src="js/jquery-3.2.1.slim.min.js"></script>-->
-    <script src="logins/js/owl.carousel.min.js"></script>
-    <script src="logins/js/main.js"></script>
-    <script src="../../__assets/js/main.js"></script>
+    <div class="service-wrap">
+        <div include-html="core__components/footer/footer-black.html"></div>
+    </div>
+    <script src="core__assets/js/vendors/owl/owl.carousel.min.js"></script>
+    <script src="core__assets/js/core.js"></script>
     <script>
-    var zipMaxLength = 5;
+        var zipMaxLength = 5;
 
-    function trimZip() {
-        zipMaxLength = (countryToSet == "PH") ? 4 : 5;
+        function trimZip() {
+            zipMaxLength = (countryToSet == "PH") ? 4 : 5;
+            var desired = $('#zipcode').val().replace(/[^\w\s]/gi, '').replace(/\D/g, '');
+            $('#zipcode').val(desired.slice(0, zipMaxLength));
+        }
 
-        var desired = $('#zipcode').val().replace(/[^\w\s]/gi, '').replace(/\D/g, '');
-        $('#zipcode').val(desired.slice(0, zipMaxLength));
-    }
+        function cleanCity() {
+            var clean = $('#city').val().replace(/[^\w\s]/gi, '').replace(/[0-9]/g, "")
+            $('#city').val(clean);
+        }
 
-
-    function cleanCity() {
-        var clean = $('#city').val().replace(/[^\w\s]/gi, '').replace(/[0-9]/g, "")
-        $('#city').val(clean);
-    }
-
-    function cleanText() {
-        $('#fname1').val($('#fname1').val().replace(/[^\w\s]/gi, '').replace(/[0-9]/g, ""));
-        $('#lname1').val($('#lname1').val().replace(/[^\w\s]/gi, '').replace(/[0-9]/g, ""));
-        //$('#phone').val($('#phone').val().replace(/[^\w\s]/gi, '').replace(/\D/g, ''));
-
-    }
+        function cleanText() {
+            $('#fname1').val($('#fname1').val().replace(/[^\w\s]/gi, '').replace(/[0-9]/g, ""));
+            $('#lname1').val($('#lname1').val().replace(/[^\w\s]/gi, '').replace(/[0-9]/g, ""));
+        }
     </script>
-
-    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149373672-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'UA-149373672-1');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-149373672-1');
     </script>
 </body>
 
