@@ -76,7 +76,12 @@
     }
 
     .section-core--outro {
-        background-image: none !important;
+        background-image: url(../core__assets/img/core__about/ctabg_left.png), url(../core__assets/img/core__about/ctbg_right.png);
+        background-position: left bottom, right bottom;
+        background-repeat: no-repeat, no-repeat;
+        background-attachment: unset;
+        background-size: 25%, 25%;
+    
     }
 
 
@@ -116,8 +121,8 @@
     }
 
     .body__content {
-    background: white url(../core__assets/img/core__about/our_leadership.png);
-}
+        background: white url(../core__assets/img/core__about/our_leadership.png);
+    }
 
     p.core__parag.team__box {
         text-align: center;
@@ -133,11 +138,12 @@
     .section.section-core--gallery {
         background: #fafafa;
     }
-    
 
-    .section-core--gallery{
+
+    .section-core--gallery {
         padding: 5rem 1rem;
     }
+
     .section-core--gallery [class^=col-] {
         padding: 1rem !important;
     }
@@ -154,21 +160,24 @@
         background: linear-gradient(to right, #83bada 0%, #83bada 47%, #1f8dc6 52%, #1f8dc6 100%);
     }
 
-    .nav-icon.d-flex h5 {
+    .nav-icon.d-flex h6 {
         text-align: center;
         color: #212529;
         font-weight: 300;
-        padding-bottom: 1rem;
+        padding-bottom: 0.75rem;
     }
 
-    .nav-icon.d-flex.active h5 {
+    .nav-icon.d-flex.active h6 {
         color: #218ec7;
-        font-weight: 400;
+        font-weight: 300;
         border-bottom: .10rem solid;
     }
 
     img.img-thumbnail.shadow-sm {
         box-shadow: 10px 10px #218ec7 !important;
+        margin-top: -80px;
+        border-radius: 50%;
+        padding: 5px;
     }
 
     h5.my-1 {
@@ -176,8 +185,21 @@
     }
 
     .tab-content {
-        background: rgba(33, 142, 199, 0.5);
+        background: rgba(33, 142, 199, 0.15);
         padding: 2.50rem;
+    }
+
+    a.text-muted:hover {
+        background: #218ec7;
+        color: #fff !important;
+        padding: 0 1rem;
+        border-radius: 0.30rem;
+    }
+
+    .modal-body {
+        padding: 3rem;
+        -webkit-filter: drop-shadow(0 0 .75rem rgba(0,0,0,.2));
+        filter: drop-shadow(0 0 .75rem rgba(0,0,0,.2));
     }
     </style>
 </head>
@@ -302,24 +324,22 @@
                     <div class="col text-center">
                         <h3 class="core__header--h3">Our Leadership</h3>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-12 col-md-12">
                         <nav>
                             <ul class="nav my-5 d-flex justify-content-center" id="pills-tab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link nav-icon active d-flex" id="pills-profile-info-tab" data-toggle="pill" href="#pills-profile-info" role="tab" aria-controls="pills-profile-info" aria-selected="true">
-                                        <h5 class="text-center mt-3"><strong>Board of Directors</strong></h4>
+                                        <h6 class="text-center mt-3"><strong>Board of Directors</strong></h4>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link nav-icon d-flex" id="pills-rwq-tab" data-toggle="pill" href="#pills-rwq" role="tab" aria-controls="pills-rwq" aria-selected="false">
-                                        <h5 class="text-center mt-3"><strong>Next Gen Advisory Council</strong></h5>
+                                        <h6 class="text-center mt-3"><strong>Next Gen Advisory Council</strong></h6>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link nav-icon d-flex" id="pills-dwq-tab" data-toggle="pill" href="#pills-dwq" role="tab" aria-controls="pills-dwq" aria-selected="false">
-                                        <h5 class="text-center mt-3"><strong>Senior Advisors</strong></h5>
+                                        <h6 class="text-center mt-3"><strong>Senior Advisors</strong></h6>
                                     </a>
                                 </li>
                             </ul>
@@ -331,81 +351,81 @@
                                             <div class="row text-center">
                                                 <!-- Team item -->
                                                 <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                    <div class="bg-white rounded shadow-sm py-3 px-4 my-5"><img src="core__assets/img/core__about/team_1.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
                                                         <h5 class="my-1">Neil Anthony Rollon</h5><span class="small text-uppercase text-muted qudos__blue-text">Chairman & Founder</span>
                                                         <p class="core__parag team__box"> Neil has many years of experience in developing various mobile operating technology platforms. With his experience as an entrepreneur and tech enthusiast, Neil is 100% laser focused in building Qudos into a world-class platform to give both riders and</p>
                                                         <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
+                                                            <button data-toggle="modal" data-target="#memberModal1" class="mt-3 small text-muted">read more <i class="fas fa-chevron-right"></i></button>
                                                         </p>
                                                     </div>
                                                 </div><!-- End -->
                                                 <!-- Team item -->
                                                 <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                    <div class="bg-white rounded shadow-sm py-3 px-4 my-5"><img src="core__assets/img/core__about/team_2.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
                                                         <h5 class="my-1">Greg Rooney</h5><span class="small text-uppercase text-muted qudos__blue-text">CEO & Director</span>
                                                         <p class="core__parag team__box">Gregory is an experienced institutional trading professional with a successful track record of performance and risk management at several bulge bracket and boutique financial services firms including Morgan Stanley, Citigroup and Guggenheim Partners.</p>
                                                         <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
+                                                              <button data-toggle="modal" data-target="#memberModal2" class="mt-3 small text-muted">read more <i class="fas fa-chevron-right"></i></button>
                                                         </p>
                                                     </div>
                                                 </div><!-- End -->
                                                 <!-- Team item -->
                                                 <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                    <div class="bg-white rounded shadow-sm py-3 px-4 my-5"><img src="core__assets/img/core__about/team_3.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
                                                         <h5 class="my-1">Jerry Raio</h5><span class="small text-uppercase text-muted qudos__blue-text">COO, Director & Investor Relations</span>
                                                         <p class="core__parag team__box">Jerry is the Founder, President and CEO of Arbor Lane Advisors, Inc., a financial service focused consulting firm with expertise in product development, product management, marketing and distribution of investment products. His career on Wall</p>
                                                         <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
+                                                            <button data-toggle="modal" data-target="#memberModal3" class="mt-3 small text-muted">read more <i class="fas fa-chevron-right"></i></button>
                                                         </p>
                                                     </div>
                                                 </div><!-- End -->
                                                 <!-- Team item -->
                                                 <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                    <div class="bg-white rounded shadow-sm py-3 px-4 my-5"><img src="core__assets/img/core__about/team_4.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
                                                         <h5 class="my-1">Thomas Sweeney</h5><span class="small text-uppercase text-muted qudos__blue-text">Director</span>
                                                         <p class="core__parag team__box">Tom joined DLC in 2004 as the Chief Operating Officer and was promoted to CEO in 2010. Prior to joining DLC, Tom served as the Vice President of Finance and Senior Financial Officer for a division of ConAgra Foods. Tom started his career at PwC and has held a number of finance and</p>
                                                         <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
+                                                            <button data-toggle="modal" data-target="#memberModal4" class="mt-3 small text-muted">read more <i class="fas fa-chevron-right"></i></button>
                                                         </p>
                                                     </div>
                                                 </div><!-- End -->
                                                 <!-- Team item -->
                                                 <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                    <div class="bg-white rounded shadow-sm py-3 px-4 my-5"><img src="core__assets/img/core__about/team_5.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
                                                         <h5 class="my-1">Roland Isaac</h5><span class="small text-uppercase text-muted qudos__blue-text">Director and CFO</span>
                                                         <p class="core__parag team__box"> Roland P. Isaac is the President and Founder of Isaac Group Healthcare. Isaac Group Healthcare is a staffing and recruitment company specializing in the hiring and placement of healthcare workers in hospitals and healthcare facilities. He was</p>
                                                         <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
+                                                             <button data-toggle="modal" data-target="#memberModal5" class="mt-3 small text-muted">read more <i class="fas fa-chevron-right"></i></button>
                                                         </p>
                                                     </div>
                                                 </div><!-- End -->
                                                 <!-- Team item -->
                                                 <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                    <div class="bg-white rounded shadow-sm py-3 px-4 my-5"><img src="core__assets/img/core__about/team_6.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
                                                         <h5 class="my-1">Debbie Hopkins</h5><span class="small text-uppercase text-muted qudos__blue-text"> Director</span>
                                                         <p class="core__parag team__box"> Deborah has been a board member with Solex Payroll, an HCM company in New York, since 2009. Deborah owns AGB Holdings, a real estate management company based in New York. Deborah’s past employments include JP Morgan Chase within the for</p>
                                                         <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
+                                                             <button data-toggle="modal" data-target="#memberModal6" class="mt-3 small text-muted">read more <i class="fas fa-chevron-right"></i></button>
                                                         </p>
                                                     </div>
                                                 </div><!-- End -->
                                                 <!-- Team item -->
                                                 <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                    <div class="bg-white rounded shadow-sm py-3 px-4 my-5"><img src="core__assets/img/core__about/team_7.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
                                                         <h5 class="my-1">David Boucher</h5><span class="small text-uppercase text-muted qudos__blue-text">Director</span>
                                                         <p class="core__parag team__box">David Boucher holds a leadership position as an Executive for Solex HCM. David also serves as managing member for Five Capital Management LLC and has been a master planner, developer, and manager of the New England Sports</p>
                                                         <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
+                                                             <button data-toggle="modal" data-target="#memberModal7" class="mt-3 small text-muted">read more <i class="fas fa-chevron-right"></i></button>
                                                         </p>
                                                     </div>
                                                 </div><!-- End -->
                                                 <!-- Team item -->
                                                 <div class="col-xl-3 col-sm-6 mb-5">
-                                                    <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                                    <div class="bg-white rounded shadow-sm py-3 px-4 my-5"><img src="core__assets/img/core__about/team_8.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
                                                         <h5 class="my-1">Alexander Sklavos</h5><span class="small text-uppercase text-muted qudos__blue-text">Director & General Counsel</span>
                                                         <p class="core__parag team__box"> Alex is admitted to the New York State Bar and the United States Federal Courts, and the District of Columbia. Mr. Sklavos received a Bachelor of Arts degree in Economics from Union College and his Juris Doctor from St. John’s University School of Law</p>
                                                         <p class="core__parag team__box">
-                                                            <a href="#" class="header__btn">read more ></a>
+                                                            <button data-toggle="modal" data-target="#memberModal8" class="mt-3 small text-muted">read more <i class="fas fa-chevron-right"></i></button>
                                                         </p>
                                                     </div>
                                                 </div><!-- End -->
@@ -416,13 +436,13 @@
                                 <!--  Board of Directors Info tab end -->
                                 <!-- Ride with Qudos tab start -->
                                 <div class="tab-pane fade" id="pills-rwq" role="tabpanel" aria-labelledby="pills-rwq-tab">
-                                    <div class="row text-center mb-5">
+                                    <div class="row text-center mt-5">
                                         <div class="col-xl-3 col-sm-6 mb-5">
-                                            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                            <div class="bg-white rounded shadow-sm py-3 px-4 my-5"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
                                                 <h5 class="my-1">Christian Palmer</h5><span class="small text-uppercase text-muted qudos__blue-text">Advisor</span>
                                                 <p class="core__parag team__box"> Christian is a learning, development, and onboarding professional that has a wide range of industry experience including sales, consulting, hospitality, and retail environments. Mr. Palmer received a Master of Science in Education and a Bachelor of Science in Criminal Justice,</p>
                                                 <p class="core__parag team__box">
-                                                    <a href="#" class="header__btn">read more ></a>
+                                                    <a href="#" class="mt-2 small text-muted">read more <i class="fas fa-chevron-right"></i></a>
                                                 </p>
                                             </div>
                                         </div><!-- End -->
@@ -431,13 +451,13 @@
                                 <!-- Ride with Qudos tab end -->
                                 <!-- Drive with Qudos tab start -->
                                 <div class="tab-pane fade" id="pills-dwq" role="tabpanel" aria-labelledby="pills-dwq-tab">
-                                       <div class="row text-center mb-5">
+                                    <div class="row text-center mt-5">
                                         <div class="col-xl-3 col-sm-6 mb-5">
-                                            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
+                                            <div class="bg-white rounded shadow-sm py-3 px-4 my-5"><img src="http://fakeimg.pl/150x150/" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm">
                                                 <h5 class="my-1"></h5><span class="small text-uppercase text-muted qudos__blue-text"></span>
                                                 <p class="core__parag team__box"></p>
                                                 <p class="core__parag team__box">
-                                                    <a href="#" class="header__btn">read more ></a>
+                                                    <a href="#" class="mt-2 small text-muted">read more <i class="fas fa-chevron-right"></i></a>
                                                 </p>
                                             </div>
                                         </div><!-- End -->
@@ -456,25 +476,66 @@
                         <p class="core__parag">Our Community</p>
                         <h2 class="core__header--h2"><span class="qudos__blue-text">Qudos</span> always values what our riders and drivers want.</h2>
                     </div>
-
-                <div class="row text-center">
-                    <div class="col-sm-12 col-md-8">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <img src="http://fakeimg.pl/350x300/" alt="" width="350" height="300" class="img-fluid rounded mb-3 img-thumbnail">
+                </div>
+                <div class="row blog">
+                    <div class="col-md-12">
+                        <div id="blogCarousel" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#blogCarousel" data-slide-to="1"></li>
+                            </ol>
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 col-md-8">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <img src="core__assets/img/core__about/ql_1.png" alt="" width="350" height="300" class="img-fluid rounded mb-3 img-thumbnail">
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <img src="core__assets/img/core__about/ql_2.png" alt="" width="350" height="300" class="img-fluid rounded mb-3 img-thumbnail">
+                                                </div>
+                                                <div class="col-sm-12 col-md-12">
+                                                    <img src="core__assets/img/core__about/ql_3.png" alt="" width="750" height="200" class="img-fluid rounded mb-3 img-thumbnail">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4 mt-3">
+                                            <img src="core__assets/img/core__about/ql_4.png" alt="" width="350" height="660" class="img-fluid rounded mb-3 img-thumbnail">
+                                        </div>
+                                    </div>
+                                    <!--.row-->
+                                </div>
+                                <!--.item-->
+                                <div class="carousel-item">
+                                    <div class="row text-center">
+                                        <div class="col-sm-12 col-md-4 mt-3">
+                                            <img src="http://fakeimg.pl/350x660/" alt="" width="350" height="660" class="img-fluid rounded mb-3 img-thumbnail">
+                                        </div>
+                                        <div class="col-sm-12 col-md-8">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-12">
+                                                    <img src="http://fakeimg.pl/750x300/" alt="" width="750" class="img-fluid rounded mb-3 img-thumbnail">
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <img src="http://fakeimg.pl/350x300/" alt="" width="350" height="300" class="img-fluid rounded mb-3 img-thumbnail">
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <img src="http://fakeimg.pl/350x300/" alt="" width="350" height="300" class="img-fluid rounded mb-3 img-thumbnail">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--.row-->
+                                </div>
+                                <!--.item-->
                             </div>
-                            <div class="col-sm-12 col-md-6">
-                                <img src="http://fakeimg.pl/350x300/" alt="" width="350" height="300" class="img-fluid rounded mb-3 img-thumbnail">
-                            </div>
-                            <div class="col-sm-12 col-md-12">
-                                <img src="http://fakeimg.pl/750x300/" alt="" width="750" class="img-fluid rounded mb-3 img-thumbnail">
-                            </div>
-                        </div>       
+                            <!--.carousel-inner-->
+                        </div>
+                        <!--.Carousel-->
                     </div>
-                     <div class="col-sm-12 col-md-4 mt-3">
-                          <img src="http://fakeimg.pl/350x660/" alt="" width="350" height="660" class="img-fluid rounded mb-3 img-thumbnail">
-                     </div>
-                 </div>        
+                </div>
             </div>
         </section>
         <section class="section section-core--outro">
@@ -493,6 +554,130 @@
     <div class="service-wrap">
         <div include-html="core__components/footer/footer-black.html"></div>
     </div>
+
+    <!--Modal of Member start--->
+    <div class="modal fade text-center py-5" style="top:30px" id="memberModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="core__assets/img/core__about/team_1.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm modal-img">
+
+                    <h5 class="my-1">Neil Anthony Rollon</h5><span class="small text-uppercase text-muted qudos__blue-text">Chairman & Founder</span>
+
+                    <p class="core__parag team__box">Neil Anthony has a bachelor’s degree in Philosophy and is a leading iOS and UI UX mobile operating system developer, a cinematographer, lead editor, and founder of New York Captures LLC, a premier production company based on New York.  Neil has many years of experience in developing various mobile operating technology platforms.  With his experience as an entrepreneur and tech enthusiast, Neil is 100% laser focused in building Qudos into a world-class platform to give both riders and drivers a much better experience than they are accustomed to.</p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./End Member Modal Modal -->
+
+    <!--Modal of Member start--->
+    <div class="modal fade text-center py-5" style="top:30px" id="memberModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="core__assets/img/core__about/team_2.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm modal-img">
+
+                    <h5 class="my-1">Greg Rooney</h5><span class="small text-uppercase text-muted qudos__blue-text">CEO & DIRECTOR</span>
+
+                    <p class="core__parag team__box">Gregory is an experienced institutional trading professional with a successful track record of performance and risk management at several bulge bracket and boutique financial services firms including Morgan Stanley, Citigroup and Guggenheim Partners.  In addition to front office responsibilities at Morgan Stanley, he steered a team at that created an internal accounting/management system aimed at client cost attribution.   Gregory received a Master of Business Administration in Accounting from Fordham University School of Business in 2004.  He is a candidate for the Chartered Financial Analyst Level III in June 2020.  Presently, Mr. Rooney’s responsibilities include developing financial models and forecasts for Qudos Technologies</p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade text-center py-5" style="top:30px" id="memberModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="core__assets/img/core__about/team_3.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm modal-img">
+
+                    <h5 class="my-1">Jerry Raio</h5><span class="small text-uppercase text-muted qudos__blue-text">COO, DIRECTOR & INVESTOR RELATIONS</span>
+
+                    <p class="core__parag team__box">Jerry is the Founder, President and CEO of Arbor Lane Advisors, Inc., a financial service focused consulting firm with expertise in product development, product management, marketing and distribution of investment products. His career on Wall Street spans over 30 years, mostly focused on the distribution of Equity Capital Markets product to Financial Advisors and retail investors.   Most recently he was Head of Retail Origination at Wells Fargo Securities (from July 2005 – October 2018) where he worked closely with asset management clients to structure, market and execute new closed end fund offerings.  Prior to joining Wachovia (now Wells Fargo) in 2005, he worked on the retail equity syndicate desk of both Morgan Stanley and Citigroup.</p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade text-center py-5" style="top:30px" id="memberModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="core__assets/img/core__about/team_4.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm modal-img">
+
+                    <h5 class="my-1">Thomas Sweeney</h5><span class="small text-uppercase text-muted qudos__blue-text">DIRECTOR</span>
+
+                    <p class="core__parag team__box">Tom joined DLC in 2004 as the Chief Operating Officer and was promoted to CEO in 2010. Prior to joining DLC, Tom served as the Vice President of Finance and Senior Financial Officer for a division of ConAgra Foods. Tom started his career at PwC and has held a number of finance and general management positions at Fortune 500 companies including Kraft, Sara Lee and Schering-Plough. He received his Bachelors in Accounting from Notre Dame and his Masters of Business Administration in Finance and Marketing from the Kellogg School of Management at Northwestern University. </p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade text-center py-5" style="top:30px" id="memberModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="core__assets/img/core__about/team_5.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm modal-img">
+
+                    <h5 class="my-1">Roland Isaac</h5><span class="small text-uppercase text-muted qudos__blue-text">Director & CFO</span>
+
+                    <p class="core__parag team__box">Roland P. Isaac is the President and Founder of Isaac Group Healthcare.  Isaac Group Healthcare is a staffing and recruitment company specializing in the hiring and placement of healthcare workers in hospitals and healthcare facilities. He was employed as an Assistant Controller at Acadia Realty Trust, a publicly traded real estate company.  He was a senior accountant at The Rockefeller Group.  He was also a senior auditor for Deloitte & Touche LLP.  Mr. Isaac is a Certified Public Accountant and received a Master of Business Administration in Finance from Fordham University Graduate School of Business in 1997 and a Bachelor of Business Administration in Accounting from Pace University in 1991.</p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade text-center py-5" style="top:30px" id="memberModal6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="core__assets/img/core__about/team_6.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm modal-img">
+
+                    <h5 class="my-1">Debbie Hopkins</h5><span class="small text-uppercase text-muted qudos__blue-text">Director</span>
+
+                    <p class="core__parag team__box">Deborah has been a board member with Solex Payroll, an HCM company in New York, since 2009. Deborah owns AGB Holdings, a real estate management company based in New York. Deborah’s past employments include JP Morgan Chase within the foreign exchange trading division as well Fiduciary Trust’s fixed income trading department.</p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade text-center py-5" style="top:30px" id="memberModal7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="core__assets/img/core__about/team_7.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm modal-img">
+
+                    <h5 class="my-1">David Boucher</h5><span class="small text-uppercase text-muted qudos__blue-text">Director</span>
+
+                    <p class="core__parag team__box">David Boucher holds a leadership position as an Executive for Solex HCM. David also serves as managing member for Five Capital Management LLC and has been a master planner, developer, and manager of the New England Sports Village in Attleboro, MA.  David is on the advisory board of Just Pour, a subscription based coffee start-up.  David is also on the advisory board of Column E, a start-up hedge fund. David is an accomplished Entrepreneur, Senior Executive, Financial Advisor, and Board Member with more than 20 years of success across the human resources, financial services, youth sports and entertainment, construction, and non-profit management industries. His broad areas of expertise include human capital management, employee benefits consulting, business formation and operations, capital raising, and governance.</p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade text-center py-5" style="top:30px" id="memberModal8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="core__assets/img/core__about/team_8.png" alt="" width="150" class="img-fluid rounded mb-3 img-thumbnail shadow-sm modal-img">
+
+                    <h5 class="my-1">Alexander Sklavos</h5><span class="small text-uppercase text-muted qudos__blue-text">Director & General Counse</span>
+
+                    <p class="core__parag team__box">Alex is admitted to the New York State Bar and the United States Federal Courts, and the District of Columbia. Mr. Sklavos received a Bachelor of Arts degree in Economics from Union College and his Juris Doctor from St. John’s University School of Law where he received academic honors, and was declared the Clinician of the year award for his work with disadvantaged senior citizens.  Mr. Sklavos was formerly a clerk to Justice Thomas Demakos of the New York State Supreme Court. He is a former adjunct professor of Touro College, instructing in Business Law and Real Estate.  He is currently a member of the New York State Bar Association and the Nassau County Bar Association, where he formerly sat on the Board of Directors. Mr. Sklavos’ emphasis is in Commercial Litigation, Corporate Litigation, Real Estate Litigation, Real Estate and Family Law.</p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./End Member Modal Modal -->
     <script src="core__assets/js/jquery.min.js"></script>
     <script src="core__assets/js/vendors/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="core__assets/js/vendors/owl/owl.carousel.min.js"></script>
@@ -531,6 +716,12 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-149373672-1');
+    </script>
+    <script type="text/javascript">
+    // optional
+    $('#blogCarousel').carousel({
+        interval: 5000
+    });
     </script>
 </body>
 
