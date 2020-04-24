@@ -94,7 +94,7 @@
 
     .image-box-shaper p {
         position: absolute;
-        bottom: -4rem;
+        bottom: -4.5rem;
         margin-bottom: 0;
         text-align: center;
         left: 50%;
@@ -112,13 +112,14 @@
     .platform__btn {
         display: block;
         width: 100%;
-        min-width: 20rem;
-        max-width: 20rem;
+        min-width: 15rem;
+        max-width: 15rem;
+        margin-top: 6rem !important;
         margin: 0 auto;
-        height: 5rem;
-        line-height: 5rem;
+        height: 3rem;
+        line-height: 3rem;
         border-radius: 5px;
-        font-size: 1rem;
+        font-size: 12px;
         font-weight: 400;
         color: #fff;
         background-color: #3b8ecb;
@@ -134,5 +135,325 @@
     }
 
     section.section.section-core-essentials.why-qudos__section--2-2 {
-        padding-bottom: 0rem !important;
+        padding-bottom: 0rem;
     }
+
+    .section-core--schedule .col-sm-12:last-child img:last-child {
+        width: auto;
+        top: auto;
+        right: auto;
+        z-index: 2;
+    }
+
+    .section-core--schedule .col-sm-12:last-child {
+        background-image: none !important;
+    }
+
+    .section-core--schedule .col-sm-12:first-child {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        justify-content: unset;
+        -webkit-box-align: unset;
+    }
+
+    /* Mobile Responsiveness */
+    @media (min-width:481px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:801px) {}
+
+    @media (max-width:991px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    @media (min-width:1280px) {}
+
+    @media (min-width:1440px) {}
+
+    @media (max-width:480px) {}
+
+    @media (max-width:575px) {}
+
+    @media (max-width:991px) {}
+
+    @media (max-width:1024px) {}
+
+
+
+    @media (max-width: 991px) and (min-width: 768px) {
+
+        #sec-2-img,
+        #sec-4-img {
+            width: 80%;
+            margin-left: 15%;
+        }
+
+        .image-box-shaper {
+            height: 8.5rem !important;
+            width: 8.5rem;
+        }
+
+        .image-box-shaper:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+
+        .why-qudos__section--2 #img-hash-1ABC3,
+        .why-qudos__section--5 img.img-fluid {
+            width: 60%;
+        }
+
+        .section-core--referral #referral-platform {
+            top: -7rem !important;
+        }
+
+        section.why-qudos__section--2 {
+            padding: 1rem 0 !important;
+        }
+
+        .platform__btn {
+            width: 50%;
+            min-width: 15rem;
+            max-width: 15rem;
+            margin-top: 5rem !important;
+            margin: 0 auto;
+            height: 3rem;
+            line-height: 3rem;
+
+        }
+
+
+        #query-1,
+        #query-2,
+        #query-3 {
+            font-size: .75rem;
+        }
+    }
+
+    @media (max-width: 767px) and (min-width: 425px) {
+        section {
+            padding: 0rem 2rem !important;
+        }
+
+        .section-core--referral {
+            height: 75rem;
+            margin-bottom: 0rem;
+        }
+
+        #sec-2-img,
+        #sec-4-img {
+            width: 70%;
+            margin-left: 0%;
+        }
+
+        #query-1 {
+            position: absolute;
+            top: -30%;
+            width: 33%;
+            left: 2%;
+        }
+
+        #query-2 {
+            position: absolute;
+            top: -10%;
+            width: 33%;
+            left: 32%;
+        }
+
+        #query-3 {
+            position: absolute;
+            top: -30%;
+            width: 33%;
+            left: 62%;
+        }
+
+        .platform__btn {
+            width: 50%;
+            min-width: 15rem;
+            max-width: 15rem;
+            margin-top: 6rem !important;
+            margin: 0 auto;
+            height: 3rem;
+            line-height: 3rem;
+
+        }
+
+        p.section__text {
+            font-size: 1rem;
+            line-height: 14px;
+        }
+
+        #img-hash-1ABC3 {
+            width: 70% !important;
+        }
+
+        #sec-4-img-2 {
+            position: relative;
+            top: 25px;
+            width: 20%;
+            margin-left: 10%;
+        }
+
+        .section-core--referral .col-md-5>span {
+            position: relative;
+            top: 21.5rem;
+            text-align: center;
+        }
+
+        .core__header--h2,
+        .core__header--h2-5 {
+            margin-bottom: 0.75rem;
+        }
+
+        .image-box-shaper:not(:last-child) {
+            margin-right: 2rem;
+        }
+
+        .section-core--schedule .col-sm-12:last-child {
+            padding-top: 0rem;
+            margin-bottom: -1rem;
+            background-size: 55%;
+        }
+
+        .section-core--schedule .col-sm-12:first-child {
+            padding-bottom:5rem;
+        }
+
+        .section-core-essentials{
+            padding-top: 5rem !important;
+            padding-bottom: 5rem !important;
+        }
+
+        .section-core--schedule{
+            padding-top: 0rem !important;
+            padding-bottom: 7rem !important;
+        }
+
+
+        .why-qudos__section--2-2 {
+            padding-bottom: 2rem !important;
+            padding-top: 0rem !important;
+            text-align: center;
+        }
+
+        .sched-2 {
+            padding: 5rem 0;
+        }
+    }
+
+    @media (max-width: 456px) and (min-width: 320px) {
+        section {
+            padding: 0rem 3rem !important;
+        }
+
+        #sec-2-img,
+        #sec-4-img {
+            width: 70%;
+            margin-left: 0%;
+        }
+
+        #query-1 {
+            position: absolute;
+            top: -35%;
+            width: 33%;
+            left: 2%;
+        }
+
+        #query-2 {
+            position: absolute;
+            top: -16%;
+            width: 33%;
+            left: 32%;
+        }
+
+        #query-3 {
+            position: absolute;
+            top: -34%;
+            width: 33%;
+            left: 62%;
+        }
+
+        .platform__btn {
+            width: 50%;
+            min-width: 15rem;
+            max-width: 15rem;
+            margin-top: 7rem !important;
+            margin: 0 auto;
+            height: 3rem;
+            line-height: 3rem;
+        }
+
+        p.section__text {
+            font-size: 1rem;
+            line-height: 14px;
+        }
+
+        #img-hash-1ABC3 {
+            width: 70%;
+        }
+
+        #sec-4-img-2 {
+            position: relative;
+            top: 25px;
+            width: 20%;
+            margin-left: 10%;
+        }
+
+        .section-core--referral .col-md-5>span {
+            position: relative;
+            top: 20.5rem;
+            text-align: center;
+        }
+
+        .core__header--h2,
+        .core__header--h2-5 {
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+
+        .image-box-shaper:not(:last-child) {
+            margin-right: 2rem;
+        }
+
+        .section-core--schedule .col-sm-12:last-child {
+            padding-top: 0rem;
+            margin-bottom: -1rem;
+            background-size: 55%;
+        }
+
+        .section-core--schedule .col-sm-12:first-child {
+            padding-bottom: 0rem;
+        }
+
+        .section-core-essentials {
+            padding-top: 5rem !important;
+            padding-bottom: 5rem !important;
+        }
+
+
+        .why-qudos__section--2-2 {
+            padding-bottom: 1rem !important;
+            padding-top: 5rem !important;
+            text-align: center;
+        }
+
+        .image-box-shaper {
+            background-color: #e6e7e8;
+            width: 8rem;
+            height: 8rem;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .sched-2 {
+            padding-bottom: 10rem !important;
+        }
+    }
+
+
