@@ -22,7 +22,7 @@
         }
 
         .section-core--outro {
-            background-image: url(../core__assets/img/core__about/ctabg_left.png), url(../core__assets/img/core__about/ctbg_right.png);
+            background-image: url(/core__assets/img/core__about/ctabg_left.png), url(/core__assets/img/core__about/ctbg_right.png);
             background-position: left bottom, right bottom;
             background-repeat: no-repeat, no-repeat;
             background-attachment: unset;
@@ -67,7 +67,7 @@
         }
 
         .body__content {
-            background: white url(../core__assets/img/core__about/our_leadership.png);
+            background: white url(/core__assets/img/core__about/our_leadership.png);
         }
 
         p.core__parag.team__box {
@@ -151,3 +151,46 @@
 
 
 
+    /* Mobile Responsiveness */
+    @media (min-width:481px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:801px) {}
+
+    @media (max-width:991px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    @media (min-width:1280px) {}
+
+    @media (min-width:1440px) {}
+
+    @media (max-width:480px) {}
+
+    @media (max-width:575px) {}
+
+    @media (max-width:991px) {}
+
+
+    @media (max-width:1440px) and (min-width: 992px){
+
+    }
+
+    @media (max-width: 991px) and (min-width: 768px) {
+
+    }
+
+    @media (max-width: 767px) and (min-width: 425px) {
+
+    }
+
+    @media (max-width: 424px) and (min-width: 319px) {
+
+    }
+
+    @media (max-width:320px) {
+        
+    }
