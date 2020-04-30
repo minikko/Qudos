@@ -51,7 +51,7 @@
         .section-core--schedule .col-sm-12:last-child {
             background: #233041;
             display: initial;
-            text-align: center;
+            text-align: center;    
         }
 
         .section-core--schedule .core__header--h2 {
@@ -148,6 +148,23 @@
             filter: drop-shadow(0 0 .75rem rgba(0,0,0,.2));
         }
 
+        .bg-white.rounded {
+            box-shadow: 5px 5px 0 5px rgba(180,180,180,.1) !important;
+        }
+
+        .cta_btn{
+            max-width: 10rem;
+            color: rgba(255,255,255,.95);
+            font-size: .85rem;
+            font-weight: 600;
+            border-radius: 3px;
+            text-align: center;
+            background-color: #218ec7;
+            background-image: none;
+            padding: .75rem 1.25rem;
+            position: relative;
+        }
+
 
 
 
@@ -184,6 +201,47 @@
     }
 
     @media (max-width: 767px) and (min-width: 425px) {
+
+        .section-core--drive .col-md-4>span {
+            top: -8rem;
+        }
+
+        .section-core--connect .col-sm-12:first-child {
+            margin-bottom: 0rem;
+            text-align: center;
+            padding-bottom: 0rem !important
+        }
+
+       .section-core--connect .col-sm-12:last-child {
+            margin-bottom: 0rem;
+            text-align: center;
+            padding-top: 0rem !important;
+            padding-bottom: 0rem !important
+        }
+
+
+        .section-core--schedule .col-sm-12:last-child {
+            margin-bottom: 0rem;
+        }
+
+        .core__header-special--1, .core__header-special--2 {
+            font-size: 2rem;
+            line-height: 2.5rem;
+        }
+
+        .core__parag {
+            max-width: 100%;
+            min-width: 75%;
+        }
+
+        .cta_btn{
+            font-size: 1.2rem;
+        }
+
+        .section-core--drive #platform-3 {
+            top: 6.35rem !important;
+            left: 0;
+        }
 
     }
 
