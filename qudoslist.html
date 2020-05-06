@@ -32,8 +32,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="core__assets/img/favIcon.png">
     <title>Qudos | How to use QudosList</title>
-    
-     <script type="application/ld+json">
+    <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -68,7 +67,7 @@
                         <nav class="header__nav">
                             <!-- <a href="promo.html">Promo</a>
                             <a href="affiliatelogin.html">Affiliate</a> -->
-                             <a href="essentials.html">Essentials</a>
+                            <a href="essentials.html">Essentials</a>
                             <a href="drive.html">Drive</a>
                             <a href="welcome.html">Ride</a>
                             <a class="desk" href="mailto:support@drivequdos.com">Contact Us</a>
@@ -122,10 +121,16 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-5">
                         <img src="core__assets/img/core__qudoslist/qudoslist-hero__img--main.png" alt="QudosList hero image" class="img-fluid">
-                    </div>
+                    </div> 
                     <div class="col-sm-12 offset-md-1 col-md-6">
                         <img src="core__assets/img/core__qudoslist/qudoslist.svg" alt="QudosList cursive logo" class="img-fluid">
-                        <p class="core__parag white-text">A social network for riders and drivers to connect.</p>
+                        <p class="core__parag white-text">A social network for riders and drivers to connect.
+                            <br><br>
+                             <a href="https://ql.ridequdos.com/login" class="btn btn--primary">
+                                Login to QudosList
+                            </a>
+                        </p>
+                       
                     </div>
                 </div>
             </div>
@@ -226,48 +231,48 @@
     <script src="core__assets/js/vendors/animateOnScroll/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
     <script>
-        function copyToClipboard(element) {
-            var $temp = $("<input>");
-            $("body").append($temp);
-            $temp.val($(element).text()).select();
-            document.execCommand("copy");
-            $temp.remove();
-        }
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
     </script>
     <script>
-        AOS.init({
-            // Global settings:
-            disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
-            startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
-            initClassName: 'aos-init', // class applied after initialization
-            animatedClassName: 'aos-animate', // class applied on animation
-            useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
-            disableMutationObserver: false, // disables automatic mutations' detections (advanced)
-            debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
-            throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+    AOS.init({
+        // Global settings:
+        disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+        startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+        initClassName: 'aos-init', // class applied after initialization
+        animatedClassName: 'aos-animate', // class applied on animation
+        useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+        disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+        debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+        throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
 
-            // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-            offset: 120, // offset (in px) from the original trigger point
-            delay: 0, // values from 0 to 3000, with step 50ms
-            duration: 1000, // values from 0 to 3000, with step 50ms
-            easing: 'ease-in-out', // default easing for AOS animations
-            once: true, // whether animation should happen only once - while scrolling down
-            mirror: false, // whether elements should animate out while scrolling past them
-            anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
-        });
+        // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+        offset: 120, // offset (in px) from the original trigger point
+        delay: 0, // values from 0 to 3000, with step 50ms
+        duration: 1000, // values from 0 to 3000, with step 50ms
+        easing: 'ease-in-out', // default easing for AOS animations
+        once: true, // whether animation should happen only once - while scrolling down
+        mirror: false, // whether elements should animate out while scrolling past them
+        anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+    });
     </script>
     <script src="core__assets/js/core.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-149373672-1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-        gtag('config', 'UA-149373672-1');
+    gtag('config', 'UA-149373672-1');
     </script>
 </body>
 
