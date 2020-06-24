@@ -65,8 +65,33 @@
     color: #fff;
 }
 
-.body__content {
+/*.body__content {
     background: white url(/core__assets/img/core__about/our_leadership.png);
+}*/
+
+button.close {
+    position: absolute;
+    float: right;
+    top: -10px;
+    right: -5px;
+    background: #272626;
+    opacity: 100%;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.close:not(:disabled):not(.disabled):focus, .close:not(:disabled):not(.disabled):hover {
+    opacity: 100;
+}
+
+.close:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.values {
+    padding: 5rem 0 5rem !important;
 }
 
 p.core__parag.team__box {
